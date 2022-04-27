@@ -61,6 +61,7 @@ We need slow cells to satisfy hold time constraints
 * Select top level module to Synthesize
 * From the RTL Design(Verilog) generate synthesized netlist with the standard cell libraries
 * View the logic
+* Generate (Write) verilog file for the synthesized netlist
 
 **Code:**
 
