@@ -130,7 +130,7 @@ write_verilog multiple_modules_hier.v
 ![image](https://user-images.githubusercontent.com/66086031/165775940-6526ed05-9ecb-4665-9c27-757cdcec53b3.png)
 
 * The hierarchy of the design is preserved.
-* The submodules contained in an module are preserved in the final synthesized netlist
+* The structure of the submodules in the original design are preserved in the final synthesized (verilog) file.
 
 ### **Why NAND gate is used for OR/NOR gate implementation?**
 
@@ -145,7 +145,7 @@ write_verilog -noattr multiple_modules_flat.v
 !gvim multiples_modules_flat.v
 ```
 * Hierarchies are removed.
-* No submodules are present in the synthesized verilog file
+* No submodules are present in the (synthesized) verilog description
 ![image](https://user-images.githubusercontent.com/66086031/165787631-693182aa-a0d9-48bc-a7f3-9aec425389b1.png)
 ![image](https://user-images.githubusercontent.com/66086031/165785815-459eef54-a2ba-4506-8186-255477f0ed90.png)
 
