@@ -4,6 +4,9 @@
  * [Day 3](#day-3)
  * [Day 4](#day-4)
  * [Day 5](#day-5)
+ * [Author](#author)
+ * [Acknowledgements](#acknowledgements)
+ * [References](#references)
 
 # Day 1
 ## iverilog
@@ -56,12 +59,26 @@ We need slow cells to satisfy hold time constraints
 
 
 **Steps:**
-* Include the library
-* Include the verilog file
-* Select top level module to Synthesize
-* From the RTL Design(Verilog) generate synthesized netlist with the standard cell libraries
-* View the logic
-* Generate (Write) verilog file for the synthesized netlist
+i. Include(read) the library and the verilog file
+
+![image](https://user-images.githubusercontent.com/66086031/165503013-3b7eef02-4c3a-43ce-a34e-1818ec314085.png)
+
+ii. Select top level module to Synthesize
+
+![image](https://user-images.githubusercontent.com/66086031/165505251-ba96fa2f-72ca-4e5d-a772-0c67fe8eeac2.png)
+
+iii. From the RTL Design(Verilog) generate gate-level netlist. 
+iv. Then, map the synthesized netlist with the standard cell libraries **(Technology Mapping)**
+
+![image](https://user-images.githubusercontent.com/66086031/165506961-c02ebcf8-a8d5-4bf4-a916-7bbf81bccc08.png)
+
+iv. View the logic
+
+![image](https://user-images.githubusercontent.com/66086031/165505986-34f1a631-1e4b-4529-b4a5-500c4eef4380.png)
+
+v.  Generate (Write) verilog file for the synthesized(mapped) netlist
+
+![image](https://user-images.githubusercontent.com/66086031/165508485-d74c18a2-9b0c-4bd7-b5d4-2e61f6ff9d0a.png)
 
 **Code:**
 
@@ -74,18 +91,89 @@ show
 write_verilog -noattr good_mux_netlist.v 
 !gvim good_mux_netlist.v
 ```
-![image](https://user-images.githubusercontent.com/66086031/165503013-3b7eef02-4c3a-43ce-a34e-1818ec314085.png)
-![image](https://user-images.githubusercontent.com/66086031/165503817-94a71298-05f2-40cf-8cbd-1e1e8b1eb69b.png)
-![image](https://user-images.githubusercontent.com/66086031/165505251-ba96fa2f-72ca-4e5d-a772-0c67fe8eeac2.png)
-![image](https://user-images.githubusercontent.com/66086031/165506961-c02ebcf8-a8d5-4bf4-a916-7bbf81bccc08.png)
-![image](https://user-images.githubusercontent.com/66086031/165505986-34f1a631-1e4b-4529-b4a5-500c4eef4380.png)
+
+
+
 ![image](https://user-images.githubusercontent.com/66086031/165507626-7e254cc9-7c8b-48fb-b60e-ca9c87f9a3e4.png)
-![image](https://user-images.githubusercontent.com/66086031/165508485-d74c18a2-9b0c-4bd7-b5d4-2e61f6ff9d0a.png)
-
-
 
 
 # Day 2
+## dot Lib file
+```
+gvim ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+```
+![image](https://user-images.githubusercontent.com/66086031/165761546-d37de039-34c9-49dc-993e-628933e782bc.png)
+
+* tt - typical process
+* 25C - optimal working temperature in 25 degrees
+* 1v8 - voltage
+* dot Lib contains standard cell features and specification
+* Also specifies the leakage power and also the timing information for different input combinations 
+* **insert image of leakage power formula**
+
+## Hierarchial vs Flat Synthesis
+![image](https://user-images.githubusercontent.com/66086031/165768331-d2313630-10c8-4308-9543-9f72863aca2f.png)
+
+### Hierarchial Synthesis
+```
+cd ./verilog_files
+yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+write_verilog multiple_modules_hier.v
+!gvim multiple_modules_hier.v
+```
+![image](https://user-images.githubusercontent.com/66086031/165770272-ac8ae53a-7146-4d8c-a458-9123832d3666.png)
+![image](https://user-images.githubusercontent.com/66086031/165771177-5ac41a3a-e34e-4af6-aa23-8ee368407219.png)
+![image](https://user-images.githubusercontent.com/66086031/165775940-6526ed05-9ecb-4665-9c27-757cdcec53b3.png)
+
+* The hierarchy of the design is preserved.
+* The submodules contained in an module are preserved in the final synthesized netlist
+
+### **Why NAND gate is used for OR/NOR gate implementation?**
+
+* The logical effort of a NAND gate is less than that of an equivalent NOR gate.
+* **insert image of logical effort of NOR NAND **
+
+### Flat Synthesis
+
+```
+flatten
+write_verilog -noattr multiple_modules_flat.v
+!gvim multiples_modules_flat.v
+```
+* Hierarchies are removed.
+* No submodules are present in the synthesized verilog file
+![image](https://user-images.githubusercontent.com/66086031/165787631-693182aa-a0d9-48bc-a7f3-9aec425389b1.png)
+![image](https://user-images.githubusercontent.com/66086031/165785815-459eef54-a2ba-4506-8186-255477f0ed90.png)
+
+### Sub-module level synthesis
+```
+yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top submodule1
+show
+```
+* This is useful when when we have multiples instances of same. So we can synthesize one module and replicate others.
+* Also, the tool may not do a good job in synthesizing a a massive design. So, we synthesize the submodules and combine them.
+
+![image](https://user-images.githubusercontent.com/66086031/165789685-a551ebad-2afb-478d-b982-163ba4547898.png)
+
+
 # Day 3
 # Day 4
 # Day 5
+
+# Author
+Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
+(As of April 2022)
+
+# Acknowledgements
+* Kunal Ghosh
+* VSD Team
+ 
+# References
+
