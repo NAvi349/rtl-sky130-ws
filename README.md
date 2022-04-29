@@ -1,5 +1,10 @@
 # Table of Contents
  * [Day 1](#day-1)
+ * * [iVerilog Introduction](#iverilog)
+ * * [Yosys Introduction](#Yosys)
+ * * [Logic Synthesis]
+ * * [Setup and Hold Time]
+ * * [Fast cells and Slow cells]
  * [Day 2](#day-2)
  * [Day 3](#day-3)
  * [Day 4](#day-4)
@@ -161,6 +166,34 @@ show
 * Also, the tool may not do a good job in synthesizing a a massive design. So, we synthesize the submodules and combine them.
 
 ![image](https://user-images.githubusercontent.com/66086031/165789685-a551ebad-2afb-478d-b982-163ba4547898.png)
+
+### Flip Flops and Flop coding styles
+#### Glitches and Hazards
+
+* In a combinational circuit, different paths have different delays, due to which the output might be unstable before settling to a stable value (Glitch).
+* Flip Flops can be inserted to minimize the glitches.
+
+**Put one image for the hazard from harris and harris book handdrawn**
+* **Static-0 Hazard:**
+* **Static-1 Hazard:**
+* **Dynamic Hazard:**
+
+#### Asynchronous Vs Synchronous
+
+| Asynchronous | Synchronous |
+| ------------ | ----------- |
+| Priority is given to the async reset(set) | Priority is given to the clock |
+| baz          | bim         |
+
+**Replace image with own drawing**
+
+![image](https://user-images.githubusercontent.com/66086031/165873629-020cb422-d905-4caf-8878-652cdc6bb115.png)
+
+#### DFF Async Reset
+```
+iverilog 
+```
+![image](https://user-images.githubusercontent.com/66086031/165874641-32afbd50-ce1b-479c-8388-76083247a494.png)
 
 
 # Day 3
