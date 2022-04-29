@@ -6,6 +6,10 @@
  * * [Setup and Hold Time](#Setup-and-Hold-time)
  * * [Fast cells and Slow cells](#Fast-cells-vs-Slow-cells)
  * [Day 2](#day-2)
+ * * [dot Lib file]
+ * * [Hierarchial Vs Flat Synthesis]
+ * * [Flip Flops and Flop coding styles]
+ * * [Optimizations]
  * [Day 3](#day-3)
  * [Day 4](#day-4)
  * [Day 5](#day-5)
@@ -167,8 +171,8 @@ show
 
 ![image](https://user-images.githubusercontent.com/66086031/165789685-a551ebad-2afb-478d-b982-163ba4547898.png)
 
-### Flip Flops and Flop coding styles
-#### Glitches and Hazards
+## Flip Flops and Flop coding styles
+### Glitches and Hazards
 
 * In a combinational circuit, different paths have different delays, due to which the output might be unstable before settling to a stable value (Glitch).
 * Flip Flops can be inserted to minimize the glitches.
@@ -178,7 +182,7 @@ show
 * **Static-1 Hazard:**
 * **Dynamic Hazard:**
 
-#### Asynchronous Vs Synchronous
+### Asynchronous Vs Synchronous
 
 | Asynchronous | Synchronous |
 | ------------ | ----------- |
@@ -189,7 +193,7 @@ show
 
 ![image](https://user-images.githubusercontent.com/66086031/165873629-020cb422-d905-4caf-8878-652cdc6bb115.png)
 
-#### DFF with Asynchronous Reset
+### DFF with Asynchronous Reset
 **Verilog Code:**
 ```verilog
 module dff_asyncres ( input clk,  input async_reset, input d, output reg q );
@@ -217,7 +221,7 @@ show dff_asyncres
 
 ![image](https://user-images.githubusercontent.com/66086031/165941329-30ad83ac-fbe2-4b36-895c-5d4de2cf1550.png)
 
-#### DFF with Asynchronous Set
+### DFF with Asynchronous Set
 
 ```verilog
 module dff_async_set ( input clk,  input async_set, input d, output reg q );
@@ -246,7 +250,7 @@ show dff_async_set
 ![image](https://user-images.githubusercontent.com/66086031/165942525-281ca909-e018-444e-a597-023448d3ae5c.png)
 
 
-#### DFF with Synchronous Reset
+### DFF with Synchronous Reset
 
 ```verilog
 module dff_syncres ( input clk, input sync_reset, input d , output reg q );
@@ -272,7 +276,7 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 
 ![image](https://user-images.githubusercontent.com/66086031/165944337-dca1351c-850d-41c2-b714-f027aeea2b68.png)
 
-### Optimizations
+## Optimizations
 * The tool just infers shifting operation for multiplication by powers of 2.
 
 ```verilog
