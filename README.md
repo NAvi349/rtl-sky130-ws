@@ -189,12 +189,127 @@ show
 
 ![image](https://user-images.githubusercontent.com/66086031/165873629-020cb422-d905-4caf-8878-652cdc6bb115.png)
 
-#### DFF Async Reset
+#### DFF with Asynchronous Reset
+**Verilog Code:**
+```verilog
+module dff_asyncres ( input clk,  input async_reset, input d, output reg q );
+ always @ (posedge clk, posedge async_reset) begin
+  if(async_reset)
+   q <= 1'b0;
+  else	
+   q <= d;
+ end
+endmodule
 ```
-iverilog 
-```
-![image](https://user-images.githubusercontent.com/66086031/165874641-32afbd50-ce1b-479c-8388-76083247a494.png)
 
+![image](https://user-images.githubusercontent.com/66086031/165937101-359927cf-e79c-432d-aa13-e76acd7742f9.png)
+
+**Yosys Synthesis:**
+```console
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog dff_asyncres.v
+synth -top dff_asyncres
+dfflibmap -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show dff_asyncres
+
+```
+
+![image](https://user-images.githubusercontent.com/66086031/165941329-30ad83ac-fbe2-4b36-895c-5d4de2cf1550.png)
+
+#### DFF with Asynchronous Set
+
+```verilog
+module dff_async_set ( input clk,  input async_set, input d, output reg q );
+ always @ (posedge clk, posedge async_set) begin
+  if(async_set)
+   q <= 1'b1;
+  else	
+   q <= d;
+ end
+endmodule
+```
+
+![image](https://user-images.githubusercontent.com/66086031/165937941-562a8b02-1ee9-4ef5-90a1-e373bafd3fa2.png)
+
+**Yosys Synthesis:**
+
+```console
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog dff_async_set.v
+synth -top dff_async_set
+dfflibmap -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show dff_async_set
+```
+
+![image](https://user-images.githubusercontent.com/66086031/165942525-281ca909-e018-444e-a597-023448d3ae5c.png)
+
+
+#### DFF with Synchronous Reset
+
+```verilog
+module dff_syncres ( input clk, input sync_reset, input d , output reg q );
+ always @ (posedge clk ) begin
+  if (sync_reset)
+   q <= 1'b0;
+  else	
+   q <= d;
+ end
+endmodule
+```
+
+![image](https://user-images.githubusercontent.com/66086031/165939938-af5f9e21-61c0-403b-a229-eb9772331d99.png)
+
+**Yosys Synthesis**
+```console
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog dff_syncres.v 
+synth -top dff_syncres
+dfflibmap -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+```
+
+![image](https://user-images.githubusercontent.com/66086031/165944337-dca1351c-850d-41c2-b714-f027aeea2b68.png)
+
+### Optimizations
+* The tool just infers shifting operation for multiplication by powers of 2.
+
+```verilog
+module mul2 (input [2:0] a, output [3:0] y);
+ assign y = a * 2;
+endmodule
+```
+![image](https://user-images.githubusercontent.com/66086031/165946960-82b10e28-8e1e-4411-8bb3-19376c843c61.png)
+
+**Synthesized netlist Verilog code:**
+
+```verilog
+module mul2(a, y);
+  input [2:0] a;
+  output [3:0] y;
+  assign y = { a, 1'b0 };
+endmodule
+```
+
+* Similiarly for multiplication with 9(8 + 1), first left shifting is done for 3 bit positions and then the signal replaces the last three bits.
+```verilog
+module mult8 (input [2:0] a , output [5:0] y);
+	assign y = a * 9;
+endmodule
+
+```
+![image](https://user-images.githubusercontent.com/66086031/165948933-db9247cb-5d33-478b-9a92-09e2af87e845.png)
+
+**Synthesized netlist Verilog code:**
+
+```verilog
+module mult8(a, y);
+  input [2:0] a;
+  output [5:0] y;
+  assign y = { a, a };
+endmodule
+```
 
 # Day 3
 # Day 4
