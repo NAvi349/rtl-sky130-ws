@@ -2,9 +2,9 @@
  * [Day 1](#day-1)
  * * [iVerilog Introduction](#iverilog)
  * * [Yosys Introduction](#Yosys)
- * * [Logic Synthesis]
- * * [Setup and Hold Time]
- * * [Fast cells and Slow cells]
+ * * [Logic Synthesis](#Logic-Synthesis)
+ * * [Setup and Hold Time](#Setup-and-Hold-time)
+ * * [Fast cells and Slow cells](#Fast-cells-vs-Slow-cells)
  * [Day 2](#day-2)
  * [Day 3](#day-3)
  * [Day 4](#day-4)
@@ -48,7 +48,7 @@ RTL Definition:
 ![image](https://user-images.githubusercontent.com/66086031/165421301-73bd1fe9-4ce3-4519-bf49-ca6b699e2053.png)
 .lib - library collection of all the standard cells, different versions of the same gate is present
 
-### Setup and hold time
+### Setup and Hold time
 (put picture of setup time FF from that VLSI subsytem course)
 We need fast cells to satisfy setup time constraints
 (put picture of hold time FF from that VLSI subsytem course)
