@@ -316,6 +316,136 @@ endmodule
 ```
 
 # Day 3
+## Optimizations
+Reducing the area and power
+Constant Propagation
+![image](https://user-images.githubusercontent.com/66086031/166089587-b7eb8d66-f6a0-42ca-92ee-6ac02d1af519.png)
+
+Boolean Logic Optimization
+ ![image](https://user-images.githubusercontent.com/66086031/166089574-b6617577-bee6-4fc7-be40-ce1cdf1d5fbf.png)
+
+Sequential Constant Propagation
+![image](https://user-images.githubusercontent.com/66086031/166089739-576dc81a-f464-4043-baf2-84472c2f700c.png)
+
+State Optimization
+
+Retiming
+![image](https://user-images.githubusercontent.com/66086031/166090131-2ffa70ae-44db-402b-8d85-f4d94e48e268.png)
+
+Cloning
+![image](https://user-images.githubusercontent.com/66086031/166090136-50984c27-a025-4c5d-86f8-ff257e159dcc.png)
+
+## Combinational Logic Optimizations lab
+(Include image of simplification for the examples with names)
+### Example 1
+
+**RTL Code:**
+```verilog
+module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+endmodule
+```
+
+```console
+// this command removes the extra unneccessary logic
+opt_clean -purge
+```
+
+![image](https://user-images.githubusercontent.com/66086031/166091182-ad629375-512a-443a-9fc5-41f8a38a1117.png)
+
+**Verilog code synthesized Netlist**
+```verilog
+module opt_check(a, b, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  input a;
+  input b;
+  output y;
+  sky130_fd_sc_hd__and2_0 _3_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  assign _1_ = b;
+  assign _0_ = a;
+  assign y = _2_;
+endmodule
+```
+
+### Example 2
+
+**RTL Verilog Code:**
+
+```verilog
+module opt_check2 (input a , input b , output y);
+	assign y = a?1:b;
+endmodule
+
+```
+
+```console
+opt_clean -purge
+```
+
+![image](https://user-images.githubusercontent.com/66086031/166091362-e1f91683-a013-4f9d-a80f-c998c08ee87b.png)
+
+**Verilog code for synthesized netlist**
+```verilog
+module opt_check2(a, b, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  input a;
+  input b;
+  output y;
+  sky130_fd_sc_hd__lpflow_inputiso1p_1 _3_ (
+    .A(_0_),
+    .SLEEP(_1_),
+    .X(_2_)
+  );
+  assign _0_ = a;
+  assign _1_ = b;
+  assign y = _2_;
+endmodule
+```
+
+### Example 3
+
+```verilog
+module opt_check3 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+endmodule
+```
+
+![image](https://user-images.githubusercontent.com/66086031/166091838-e1bb9d99-714f-4ef7-9182-39208e8d0501.png)
+
+**Verilog code for the synthesized netlist**
+
+```verilog
+module opt_check3(a, b, c, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  input a;
+  input b;
+  input c;
+  output y;
+  sky130_fd_sc_hd__and3_1 _5_ (
+    .A(_2_),
+    .B(_3_),
+    .C(_1_),
+    .X(_4_)
+  );
+  assign _2_ = b;
+  assign _3_ = c;
+  assign _1_ = a;
+  assign y = _4_;
+endmodule
+```
+
 # Day 4
 # Day 5
 
