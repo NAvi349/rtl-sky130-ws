@@ -988,7 +988,51 @@ endmodule
 * **Missing Sensitivity List:** 
 	- ![image](https://user-images.githubusercontent.com/66086031/166102383-d28c0bb9-7d41-41d9-94cd-ab8b670d69d0.png)
 
-* 
+Take some points below from the vlsi modelling
+* **Blocking and Non Blocking Statements:**
+	- ![image](https://user-images.githubusercontent.com/66086031/166102446-90ac6130-4838-4eef-83d6-5a8290302a58.png)
+	- ![image](https://user-images.githubusercontent.com/66086031/166102493-bbdcc49a-0443-4d25-8e45-b03d7bb2318e.png)
+	- ![image](https://user-images.githubusercontent.com/66086031/166102624-05f9ca04-dd92-4524-8540-4fe2f5ac78b6.png)
+
+## Ternary operator Mux
+
+**Verilog code for RTL Design:**
+
+```verilog
+module ternary_operator_mux (input i0 , input i1 , input sel , output y);
+	assign y = sel?i1:i0;
+endmodule
+```
+**RTL Simultation:**
+![image](https://user-images.githubusercontent.com/66086031/166103163-cdc46474-f07f-4e81-81a3-345e359f6b30.png)
+
+**Synthesized Netlist**
+![image](https://user-images.githubusercontent.com/66086031/166103308-cf7c11ef-61c3-4935-9211-7c48184e480a.png)
+
+**Verilog code for the synthesized netlist**
+```verilog
+module ternary_operator_mux(i0, i1, sel, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  input i0;
+  input i1;
+  input sel;
+  output y;
+  sky130_fd_sc_hd__mux2_1 _4_ (
+    .A0(_0_),
+    .A1(_1_),
+    .S(_2_),
+    .X(_3_)
+  );
+  assign _0_ = i0;
+  assign _1_ = i1;
+  assign _2_ = sel;
+  assign y = _3_;
+endmodule
+```
+
 
 
 # Day 5
