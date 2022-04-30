@@ -756,6 +756,8 @@ endmodule
 ```
 ### Example 5
 
+**Verilog code for the RTL Design**
+
 ```verilog
 module dff_const5(input clk, input reset, output reg q);
 reg q1;
@@ -781,7 +783,7 @@ Both the FFs are initialized to zero by the reset. Input given to the first FF i
 ![image](https://user-images.githubusercontent.com/66086031/166099090-a7a6d011-d51e-4ffd-a816-926e3c8477e3.png)
 
 
-
+**Verilog code for the synthesized netlist**
 ```verilog
 module dff_const5(clk, reset, q);
   wire _0_;
