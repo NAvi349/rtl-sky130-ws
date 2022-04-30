@@ -650,6 +650,8 @@ endmodule
 ```
 
 ### Example 3
+
+
 ```verilog
 module dff_const3(input clk, input reset, output reg q);
 reg q1;
@@ -667,7 +669,10 @@ always @(posedge clk, posedge reset)
 	end
 endmodule
 ```
+
 In this the value of q1 is not immediately reflected at the clock edge of the second flip flop because of Tcq delay.
+
+![image](https://user-images.githubusercontent.com/66086031/166096980-79675150-d065-4969-a7e9-89a7c4f79b16.png)
 ![image](https://user-images.githubusercontent.com/66086031/166096597-fffa84ae-110a-4071-9cb1-16c7d1df9357.png)
 ![image](https://user-images.githubusercontent.com/66086031/166096788-4cbaaa60-7cf3-493a-9d0d-95a1c8268f85.png)
 
@@ -709,6 +714,44 @@ module dff_const3(clk, reset, q);
 endmodule
 ```
 ### Example 4
+```verilog
+module dff_const4(input clk, input reset, output reg q);
+	reg q1;
+
+	always @(posedge clk, posedge reset)
+		begin
+			if(reset)
+			begin
+				q <= 1'b1;
+				q1 <= 1'b1;
+			end
+			else
+			begin
+				q1 <= 1'b1;
+				q <= q1;
+			end
+	end
+	
+endmodule
+```
+
+In this the Flip flops are initialized to logic HIGH after the reset. The input to the first flip flop is also logic HIGH. So the output of the second Flip flop is a constant logic HIGH.
+
+![image](https://user-images.githubusercontent.com/66086031/166097167-351a6da8-14fc-495e-ade2-7b00bbd366f4.png)
+![image](https://user-images.githubusercontent.com/66086031/166097310-36660e64-c32c-4ee1-8dda-acb53c310538.png)
+
+
+```verilog
+
+module dff_const4(clk, reset, q);
+	input clk;
+	output q;
+	wire q1;
+	input reset;
+	assign q = 1'h1;
+	assign q1 = 1'h1;
+endmodule
+```
 ### Example 5
 
 
