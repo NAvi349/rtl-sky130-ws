@@ -533,6 +533,54 @@ module multiple_module_opt(a, b, c, d, y);
   assign _1_ = a;
 endmodule
 ```
+### Example 5
+```verilog
+
+module sub_module(input a , input b , output y);
+ assign y = a & b;
+endmodule
+
+module multiple_module_opt2(input a , input b , input c , input d , output y);
+	wire n1,n2,n3;
+
+	sub_module U1 (.a(a) , .b(1'b0) , .y(n1));
+	sub_module U2 (.a(b), .b(c) , .y(n2));
+	sub_module U3 (.a(n2), .b(d) , .y(n3));
+	sub_module U4 (.a(n3), .b(n1) , .y(y));
+
+endmodule
+```
+![image](https://user-images.githubusercontent.com/66086031/166093141-55ec45de-f76f-4bed-a899-62bc5917ae31.png)
+
+
+```verilog
+module multiple_module_opt2(a, b, c, d, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  wire \U1.y ;
+  wire \U2.y ;
+  wire \U3.y ;
+  input a;
+  input b;
+  input c;
+  input d;
+  output y;
+  assign _4_ = 1'h0;
+  assign _0_ = a;
+  assign _2_ = c;
+  assign _1_ = b;
+  assign _3_ = d;
+  assign y = _4_;
+endmodule
+```
+
+
+
+
+
 # Day 4
 # Day 5
 
