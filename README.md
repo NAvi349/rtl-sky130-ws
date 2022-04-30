@@ -1,22 +1,5 @@
 # Table of Contents
- * [Day 1](#day-1)
- * * [iVerilog Introduction](#iverilog)
- * * [Yosys Introduction](#Yosys)
- * * [Logic Synthesis](#Logic-Synthesis)
- * * [Setup and Hold Time](#Setup-and-Hold-time)
- * * [Fast cells and Slow cells](#Fast-cells-vs-Slow-cells)
- * [Day 2](#day-2)
- * * [dot Lib file]
- * * [Hierarchial Vs Flat Synthesis]
- * * [Flip Flops and Flop coding styles]
- * * [Optimizations]
- * [Day 3](#day-3)
- * [Day 4](#day-4)
- * [Day 5](#day-5)
- * [Author](#author)
- * [Acknowledgements](#acknowledgements)
- * [References](#references)
-<!-- TOC start -->
+
 - [Day 1](#day-1)
   * [iverilog](#iverilog)
   * [Yosys](#yosys)
@@ -61,7 +44,7 @@
 - [Author](#author)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
-<!-- TOC end -->
+
 # Day 1
 ## iverilog
 ```
