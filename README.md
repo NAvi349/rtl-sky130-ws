@@ -1050,11 +1050,49 @@ gtkwave tb_ternary_operator_mux.vcd
 * Even if the input changes, it will not be reflected in the output if sel does not change.
 
 **Verilog code for the RTL Design**
+
 ```verilog
+module bad_mux (input i0 , input i1 , input sel , output reg y);
+	always @ (sel)
+	begin
+		if(sel)
+			y <= i1;
+		else 
+			y <= i0;
+	end
+endmodule
 ```
 
+![image](https://user-images.githubusercontent.com/66086031/166113794-93c5c1b2-d6b2-47de-805f-cb3d160daf37.png)
+![image](https://user-images.githubusercontent.com/66086031/166113976-35430366-ed83-430e-84b1-31447fad66a9.png)
+
+**GLS for Bad MUX:**
+
+![image](https://user-images.githubusercontent.com/66086031/166114069-5cf66491-573c-4def-a26a-a26abad8e769.png)
+
 **Verilog code for the synthesized netlist**
+
 ```verilog
+module bad_mux(i0, i1, sel, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  input i0;
+  input i1;
+  input sel;
+  output y;
+  sky130_fd_sc_hd__mux2_1 _4_ (
+    .A0(_0_),
+    .A1(_1_),
+    .S(_2_),
+    .X(_3_)
+  );
+  assign _0_ = i0;
+  assign _1_ = i1;
+  assign _2_ = sel;
+  assign y = _3_;
+endmodule
 ```
 # Day 5
 
