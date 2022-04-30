@@ -175,10 +175,12 @@ write_verilog multiple_modules_hier.v
 * The hierarchy of the design is preserved.
 * The structure of the submodules in the original design are preserved in the final synthesized (verilog) file.
 
-### **Why NAND gate is used for OR/NOR gate implementation?**
+### Why NAND gate is used for OR/NOR gate implementation?
 
 * The logical effort of a NAND gate is less than that of an equivalent NOR gate.
-* **insert image of logical effort of NOR NAND **
+* ![image](https://user-images.githubusercontent.com/66086031/166118137-1b1d4cb7-25b2-4ced-ad08-ec6fd74f879b.png)
+* Logical effort - amount of current to drive a logic gate
+
 
 ### Flat Synthesis
 
