@@ -714,6 +714,9 @@ module dff_const3(clk, reset, q);
 endmodule
 ```
 ### Example 4
+
+**Verilog code for the RTL Design**
+
 ```verilog
 module dff_const4(input clk, input reset, output reg q);
 	reg q1;
@@ -739,7 +742,7 @@ In this the Flip flops are initialized to logic HIGH after the reset. The input 
 ![image](https://user-images.githubusercontent.com/66086031/166097167-351a6da8-14fc-495e-ade2-7b00bbd366f4.png)
 ![image](https://user-images.githubusercontent.com/66086031/166097310-36660e64-c32c-4ee1-8dda-acb53c310538.png)
 
-
+**Verilog code for the synthesized netlist**
 ```verilog
 
 module dff_const4(clk, reset, q);
