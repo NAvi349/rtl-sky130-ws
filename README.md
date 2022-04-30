@@ -40,10 +40,16 @@
     + [Example 1](#example-1-2)
     + [Example 2](#example-2-2)
 - [Day 4](#day-4)
+  * [Gate Level Simulation (GLS)](#gate-level-simulation-gls)
+  * [Synthesis Simulation Mismatch](#synthesis-simulation-mismatch)
+  * [Ternary operator Mux](#ternary-operator-mux)
+  * [Bad MUX](#bad-mux)
+  * [Blocking Statement Synthesis Simulation Mismatch](#blocking-statement-synthesis-simulation-mismatch)
 - [Day 5](#day-5)
 - [Author](#author)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
+
 
 # Day 1
 ## iverilog
