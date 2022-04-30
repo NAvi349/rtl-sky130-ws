@@ -1032,9 +1032,30 @@ module ternary_operator_mux(i0, i1, sel, y);
   assign y = _3_;
 endmodule
 ```
+**GLS Commands:**
 
+```console
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+./a.out
+gtkwave tb_ternary_operator_mux.vcd
 
+```
 
+**GLS:**
+![image](https://user-images.githubusercontent.com/66086031/166103505-eb0e52e9-91f2-46ad-afe5-498f5bf6224c.png)
+
+## Bad MUX
+
+* In this, only the sel is included in the sensitivity list. So the output is evaluated only when the sel changes.
+* Even if the input changes, it will not be reflected in the output if sel does not change.
+
+**Verilog code for the RTL Design**
+```verilog
+```
+
+**Verilog code for the synthesized netlist**
+```verilog
+```
 # Day 5
 
 # Author
