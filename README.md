@@ -91,11 +91,14 @@ RTL Definition:
 #### Setup Time (Max Delay) Constraints
 
 ![image](https://user-images.githubusercontent.com/66086031/166118620-dd932eef-2e14-4689-a24d-d1e1e2098bcb.png)
-We need fast cells to satisfy Max Delay constraints.
 
-(put picture of hold time FF from that VLSI subsytem course)
+* We need fast cells to satisfy Max Delay constraints.
 
-We need slow cells to satisfy hold time constraints
+#### Hold Time (Min. Delay Constraints
+
+![image](https://user-images.githubusercontent.com/66086031/166118808-82e6ff9a-34c3-4cbc-b40a-23cc1f2faa43.png)
+
+* We need slow cells to satisfy hold time constraints
 
 ### Fast cells vs Slow cells
 (Replace this image with text)
