@@ -984,6 +984,13 @@ endmodule
 * When doing GLS, the Gate level verilog models from the standard cell library must be included.
 
 ## Synthesis Simulation Mismatch
+
+* **Missing Sensitivity List:** 
+	- ![image](https://user-images.githubusercontent.com/66086031/166102383-d28c0bb9-7d41-41d9-94cd-ab8b670d69d0.png)
+
+* 
+
+
 # Day 5
 
 # Author
