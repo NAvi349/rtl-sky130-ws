@@ -446,6 +446,93 @@ module opt_check3(a, b, c, y);
 endmodule
 ```
 
+### Example 4
+
+**Verilog code for RTL Design**
+
+```verilog
+module opt_check4 (input a, input b, input c , output y);
+ assign y = a?(b?(a & c ):c):(!c);
+endmodule
+```
+
+![image](https://user-images.githubusercontent.com/66086031/166092081-26e0d98b-1476-4511-bd09-68b89a0b21fe.png)
+
+**Verilog code for synthesized netlist**
+
+```verilog
+module opt_check4 (a, b, c, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  input a;
+  input b;
+  input c;
+  output y;
+  sky130_fd_sc_hd__xnor2_1 _3_ (
+    .A(_0_),
+    .B(_1_),
+    .Y(_2_)
+  );
+  assign _0_ = a;
+  assign _1_ = c;
+  assign y = _2_;
+endmodule
+```
+
+### Example 5
+
+**Verilog Code for RTL Design**
+
+```verilog
+module sub_module1(input a , input b , output y);
+ 	assign y = a & b;
+endmodule
+
+module sub_module2(input a , input b , output y);
+ 	assign y = a^b;
+endmodule
+
+module multiple_module_opt(input a , input b , input c , input d , output y);
+	wire n1,n2,n3;
+
+	sub_module1 U1 (.a(a) , .b(1'b1) , .y(n1));
+	sub_module2 U2 (.a(n1), .b(1'b0) , .y(n2));
+	sub_module2 U3 (.a(b), .b(d) , .y(n3));
+
+	assign y = c | (b & n1); 
+
+
+endmodule
+```
+
+![image](https://user-images.githubusercontent.com/66086031/166092733-f3a0c293-6ce9-482d-9886-70e241016616.png)
+
+```verilog
+module multiple_module_opt(a, b, c, d, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  wire \U1.y ;
+  input a;
+  input b;
+  input c;
+  input d;
+  output y;
+  sky130_fd_sc_hd__a21o_1 _5_ (
+    .A1(_2_),
+    .A2(_1_),
+    .B1(_3_),
+    .X(_4_)
+  );
+  assign _2_ = b;
+  assign _3_ = c;
+  assign y = _4_;
+  assign _1_ = a;
+endmodule
+```
 # Day 4
 # Day 5
 
