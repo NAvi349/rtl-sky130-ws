@@ -1119,14 +1119,18 @@ endmodule
 ```
 
 **RTL Simulation** </br>
+
 ![image](https://user-images.githubusercontent.com/66086031/166115117-76cdcd48-23a0-4568-ae3e-4c870cc77d9d.png)
 
 **No Flip Flops are inferred during synthesis** </br>
+
 ![image](https://user-images.githubusercontent.com/66086031/166115171-b2f5f131-0013-443b-9b02-38ad51445ee4.png)
 
 **Synthesized Netlist** </br>
+
 ![image](https://user-images.githubusercontent.com/66086031/166115229-79581cc1-341a-410a-92ef-b0d1d1de02ca.png)
 
+**Verilog code for the synthesized netlist**
 
 ```verilog
 module blocking_caveat(a, b, c, d);
@@ -1153,6 +1157,7 @@ endmodule
 ```
 
 **GLS**
+
 ![image](https://user-images.githubusercontent.com/66086031/166115338-79631d5d-5ea1-4ddf-85f9-29abf976b0d7.png)
 
 
