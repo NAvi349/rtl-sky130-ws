@@ -87,9 +87,14 @@ RTL Definition:
 .lib - library collection of all the standard cells, different versions of the same gate is present
 
 ### Setup and Hold time
-(put picture of setup time FF from that VLSI subsytem course)
-We need fast cells to satisfy setup time constraints
+
+#### Setup Time (Max Delay) Constraints
+
+![image](https://user-images.githubusercontent.com/66086031/166118620-dd932eef-2e14-4689-a24d-d1e1e2098bcb.png)
+We need fast cells to satisfy Max Delay constraints.
+
 (put picture of hold time FF from that VLSI subsytem course)
+
 We need slow cells to satisfy hold time constraints
 
 ### Fast cells vs Slow cells
