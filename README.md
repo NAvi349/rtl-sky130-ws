@@ -316,7 +316,7 @@ endmodule
 ```
 
 # Day 3
-## Optimizations
+## Intro to Optimizations
 Reducing the area and power
 Constant Propagation
 ![image](https://user-images.githubusercontent.com/66086031/166089587-b7eb8d66-f6a0-42ca-92ee-6ac02d1af519.png)
@@ -577,7 +577,139 @@ module multiple_module_opt2(a, b, c, d, y);
 endmodule
 ```
 
+## Sequential Optimizations
 
+### Example 1:
+
+**RTL Verilog Code:**
+
+```verilog
+module dff_const1(input clk, input reset, output reg q);
+	always @(posedge clk, posedge reset)	begin
+		if(reset)
+			q <= 1'b0;
+		else
+			q <= 1'b1;
+	end
+
+endmodule
+```
+
+![image](https://user-images.githubusercontent.com/66086031/166094824-13d6af6a-28c0-4f13-8cfe-54226d99583f.png)
+![image](https://user-images.githubusercontent.com/66086031/166095172-6e6df88a-9306-40f4-866d-82ff14f10ea9.png)
+
+**Verilog Code for synthesized netlist:**
+```verilog
+module dff_const1(clk, reset, q);
+	wire _0_;
+	wire _1_;
+	wire _2_;
+	input clk;
+	output q;
+	input reset;
+	sky130_fd_sc_hd__clkinv_1 _3_ (
+		.A(_1_),
+		.Y(_0_)
+	);
+	sky130_fd_sc_hd__dfrtp_1 _4_ (
+		.CLK(clk),
+		.D(1'h1),
+		.Q(q),
+		.RESET_B(_2_)
+	);
+	assign _1_ = reset;
+	assign _2_ = _0_;
+endmodule
+```
+
+### Example 2
+
+**Verilog code for RTL**
+```verilog
+module dff_const2(input clk, input reset, output reg q);
+	always @(posedge clk, posedge reset) begin
+		if(reset)
+			q <= 1'b1;
+		else
+			q <= 1'b1;
+	end
+endmodule
+```
+
+![image](https://user-images.githubusercontent.com/66086031/166095328-27ad919a-d8f6-45d8-8460-e090e0d6e6ef.png)
+![image](https://user-images.githubusercontent.com/66086031/166096248-62b53982-2470-4a65-afb6-84336c2c7a1a.png)
+
+**Verilog code for synthesized netlist**
+```verilog
+module dff_const2(clk, reset, q);
+	input clk;
+	output q;
+	input reset;
+	assign q = 1'h1;
+endmodule
+```
+
+### Example 3
+```verilog
+module dff_const3(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+	begin
+		if(reset) begin
+			q <= 1'b1;
+			q1 <= 1'b0;
+		end
+		else begin
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+In this the value of q1 is not immediately reflected at the clock edge of the second flip flop because of Tcq delay.
+![image](https://user-images.githubusercontent.com/66086031/166096597-fffa84ae-110a-4071-9cb1-16c7d1df9357.png)
+![image](https://user-images.githubusercontent.com/66086031/166096788-4cbaaa60-7cf3-493a-9d0d-95a1c8268f85.png)
+
+
+```verilog
+module dff_const3(clk, reset, q);
+	  wire _0_;
+	  wire _1_;
+	  wire _2_;
+	  wire _3_;
+	  wire _4_;
+	  input clk;
+	  output q;
+	  wire q1;
+	  input reset;
+	  sky130_fd_sc_hd__clkinv_1 _5_ (
+		    .A(_2_),
+		    .Y(_0_)
+	  );
+	  sky130_fd_sc_hd__clkinv_1 _6_ (
+		    .A(_2_),
+		    .Y(_1_)
+	  );
+	  sky130_fd_sc_hd__dfstp_2 _7_ (
+		    .CLK(clk),
+		    .D(q1),
+		    .Q(q),
+		    .SET_B(_3_)
+	  );
+	  sky130_fd_sc_hd__dfrtp_1 _8_ (
+		    .CLK(clk),
+		    .D(1'h1),
+		    .Q(q1),
+		    .RESET_B(_4_)
+	  );
+	  assign _2_ = reset;
+	  assign _3_ = _0_;
+	  assign _4_ = _1_;
+endmodule
+```
+### Example 4
+### Example 5
 
 
 
