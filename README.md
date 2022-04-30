@@ -977,6 +977,13 @@ endmodule
 ```
 
 # Day 4
+## Gate Level Simulation (GLS)
+
+* The verilog code of the synthesized netlist is verified using a testbench in iVerilog.
+* It is done to ensure the logical correctness after synthesis.
+* When doing GLS, the Gate level verilog models from the standard cell library must be included.
+
+## Synthesis Simulation Mismatch
 # Day 5
 
 # Author
