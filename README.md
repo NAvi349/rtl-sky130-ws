@@ -756,6 +756,68 @@ endmodule
 ```
 ### Example 5
 
+```verilog
+module dff_const5(input clk, input reset, output reg q);
+reg q1;
+
+	always @(posedge clk, posedge reset) begin
+		if(reset) begin
+			q <= 1'b0;
+			q1 <= 1'b0;
+		end
+		
+		else begin
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+
+endmodule
+```
+
+Both the FFs are initialized to zero by the reset. Input given to the first FF is reflected one cycle later in the second FF due to Tcq.
+
+![image](https://user-images.githubusercontent.com/66086031/166098848-17f92c87-f3e5-4054-9615-1f47afb08745.png)
+![image](https://user-images.githubusercontent.com/66086031/166099090-a7a6d011-d51e-4ffd-a816-926e3c8477e3.png)
+
+
+
+```verilog
+module dff_const5(clk, reset, q);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  input clk;
+  output q;
+  wire q1;
+  input reset;
+  sky130_fd_sc_hd__clkinv_1 _5_ (
+    .A(_2_),
+    .Y(_0_)
+  );
+  sky130_fd_sc_hd__clkinv_1 _6_ (
+    .A(_2_),
+    .Y(_1_)
+  );
+  sky130_fd_sc_hd__dfrtp_1 _7_ (
+    .CLK(clk),
+    .D(q1),
+    .Q(q),
+    .RESET_B(_3_)
+  );
+  sky130_fd_sc_hd__dfrtp_1 _8_ (
+    .CLK(clk),
+    .D(1'h1),
+    .Q(q1),
+    .RESET_B(_4_)
+  );
+  assign _2_ = reset;
+  assign _3_ = _0_;
+  assign _4_ = _1_;
+endmodule
+```
 
 
 # Day 4
