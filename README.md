@@ -31,7 +31,7 @@
     + [Example 5](#example-5)
     + [Example 6](#example-6)
   * [Sequential Optimizations](#sequential-optimizations)
-    + [Example 1:](#example-1-1)
+    + [Example 1](#example-1-1)
     + [Example 2](#example-2-1)
     + [Example 3](#example-3-1)
     + [Example 4](#example-4-1)
@@ -613,7 +613,7 @@ endmodule
 
 ## Sequential Optimizations
 
-### Example 1:
+### Example 1
 
 **RTL Verilog Code:**
 
