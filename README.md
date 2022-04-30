@@ -821,6 +821,61 @@ module dff_const5(clk, reset, q);
 endmodule
 ```
 
+## Unused outputs optimizations
+### Example 1
+
+```verilog
+module counter_opt (input clk , input reset , output q);
+	reg [2:0] count;
+	assign q = count[0];
+
+	always @(posedge clk ,posedge reset)
+	begin
+		if(reset)
+			count <= 3'b000;
+		else
+			count <= count + 1;
+	end
+endmodule
+```
+
+In this the output q is needs only the value of count[0], so count[1], count[2] are not present in the synthesized netlist.
+
+![image](https://user-images.githubusercontent.com/66086031/166100142-616c814e-2bb8-42b7-bb95-51d09cae00b6.png)
+
+```verilog
+module counter_opt(clk, reset, q);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire [2:0] _4_;
+  wire _5_;
+  input clk;
+  wire [2:0] count;
+  output q;
+  input reset;
+  sky130_fd_sc_hd__clkinv_1 _6_ (
+    .A(_3_),
+    .Y(_1_)
+  );
+  sky130_fd_sc_hd__clkinv_1 _7_ (
+    .A(_2_),
+    .Y(_0_)
+  );
+  reg \count_reg[0] ;
+  always @(posedge clk, negedge _5_)
+    if (!_5_) \count_reg[0]  <= 1'h0;
+    else \count_reg[0]  <= _4_[0];
+  assign count[0] = \count_reg[0] ;
+  assign _4_[2:1] = count[2:1];
+  assign q = count[0];
+  assign _3_ = reset;
+  assign _5_ = _1_;
+  assign _2_ = count[0];
+  assign _4_[0] = _0_;
+endmodule
+```
 
 # Day 4
 # Day 5
