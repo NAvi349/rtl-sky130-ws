@@ -561,7 +561,7 @@ module multiple_module_opt(a, b, c, d, y);
   assign _1_ = a;
 endmodule
 ```
-### Example 5
+### Example 6
 ```verilog
 
 module sub_module(input a , input b , output y);
