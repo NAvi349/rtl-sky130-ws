@@ -1,6 +1,5 @@
 # Table of Contents
 
-<!-- TOC start -->
 - [Day 1](#day-1)
   * [iverilog](#iverilog)
   * [Yosys](#yosys)
@@ -45,7 +44,7 @@
 - [Author](#author)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
-<!-- TOC end -->
+
 # Day 1
 ## iverilog
 ```
