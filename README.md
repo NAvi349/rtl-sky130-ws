@@ -822,6 +822,7 @@ endmodule
 ```
 
 ## Unused outputs optimizations
+
 ### Example 1
 
 ```verilog
@@ -874,6 +875,76 @@ module counter_opt(clk, reset, q);
   assign _5_ = _1_;
   assign _2_ = count[0];
   assign _4_[0] = _0_;
+endmodule
+```
+
+### Example 2
+
+**Verilog code for the RTL Design**
+```verilog
+module counter_opt (input clk , input reset , output q);
+	reg [2:0] count;
+	assign q = (count[2:0] == 3'b100);
+
+	always @(posedge clk ,posedge reset)
+	begin
+		if(reset)
+			count <= 3'b000;
+		else
+			count <= count + 1;
+	end
+
+endmodule
+```
+
+In this q needs all the three bits of count. So, three Flip Flops are present in the synthesized netlist.
+
+![image](https://user-images.githubusercontent.com/66086031/166100435-7ccb3b8e-8f5b-42b4-9277-c1e032603c08.png)
+
+**Verilog code for the synthesized netlist**
+
+```verilog
+module counter_opt(clk, reset, q);
+  wire _00_;
+  wire _01_;
+  wire [2:0] _02_;
+  wire [2:0] _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  input clk;
+  wire [2:0] count;
+  output q;
+  input reset;
+  assign _02_[0] = ~count[0];
+  assign _01_ = count[1] | count[0];
+  assign q = count[2] & ~(_01_);
+  assign _03_[1] = count[1] ^ count[0];
+  assign _00_ = count[1] & count[0];
+  assign _03_[2] = _00_ ^ count[2];
+  assign _04_ = ~reset;
+  assign _05_ = ~reset;
+  assign _06_ = ~reset;
+  sky130_fd_sc_hd__dfrtp_1 _16_ (
+    .CLK(clk),
+    .D(_03_[1]),
+    .Q(count[1]),
+    .RESET_B(_04_)
+  );
+  sky130_fd_sc_hd__dfrtp_1 _17_ (
+    .CLK(clk),
+    .D(_03_[2]),
+    .Q(count[2]),
+    .RESET_B(_05_)
+  );
+  sky130_fd_sc_hd__dfrtp_1 _18_ (
+    .CLK(clk),
+    .D(_02_[0]),
+    .Q(count[0]),
+    .RESET_B(_06_)
+  );
+  assign _03_[0] = _02_[0];
+  assign _02_[2:1] = count[2:1];
 endmodule
 ```
 
