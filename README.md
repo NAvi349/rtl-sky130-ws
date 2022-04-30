@@ -1062,8 +1062,12 @@ module bad_mux (input i0 , input i1 , input sel , output reg y);
 	end
 endmodule
 ```
+**RTL Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166113794-93c5c1b2-d6b2-47de-805f-cb3d160daf37.png)
+
+**Synthesized Netlist**
+
 ![image](https://user-images.githubusercontent.com/66086031/166113976-35430366-ed83-430e-84b1-31447fad66a9.png)
 
 **GLS for Bad MUX:**
