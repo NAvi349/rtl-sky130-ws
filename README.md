@@ -1098,6 +1098,52 @@ module bad_mux(i0, i1, sel, y);
   assign y = _3_;
 endmodule
 ```
+
+## Blocking Statement Synthesis Simulation Mismatch
+
+```verilog
+```
+
+**RTL Simulation**
+![image](https://user-images.githubusercontent.com/66086031/166115117-76cdcd48-23a0-4568-ae3e-4c870cc77d9d.png)
+
+**No Flip Flops are inferred during synthesis**
+![image](https://user-images.githubusercontent.com/66086031/166115171-b2f5f131-0013-443b-9b02-38ad51445ee4.png)
+
+**Synthesized Netlist**
+![image](https://user-images.githubusercontent.com/66086031/166115229-79581cc1-341a-410a-92ef-b0d1d1de02ca.png)
+
+
+```verilog
+module blocking_caveat(a, b, c, d);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  input a;
+  input b;
+  input c;
+  output d;
+  sky130_fd_sc_hd__o21a_1 _5_ (
+    .A1(_2_),
+    .A2(_1_),
+    .B1(_3_),
+    .X(_4_)
+  );
+  assign _2_ = b;
+  assign _1_ = a;
+  assign _3_ = c;
+  assign d = _4_;
+endmodule
+```
+
+**GLS**
+![image](https://user-images.githubusercontent.com/66086031/166115338-79631d5d-5ea1-4ddf-85f9-29abf976b0d7.png)
+
+
+
+
 # Day 5
 
 # Author
