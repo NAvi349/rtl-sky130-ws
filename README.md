@@ -2751,11 +2751,11 @@ endmodule
 
 # Acknowledgements
 
-- Kunal Ghosh - Co-Founder of VSD
+[1] Kunal Ghosh - Co-Founder of VSD
 
-- VSD Team
+[2] VSD Team
 
 # References
 
-- Design and Analysis of VLSI Subsystems
-- Hardware Modelling using Verilog
+[1] Design and Analysis of VLSI Subsystems
+[2] Hardware Modelling using Verilog
