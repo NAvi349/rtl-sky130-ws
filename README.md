@@ -74,7 +74,7 @@
     - [Incomplete Case statement lab](#incomplete-case-statement-lab)
     - [Case statement with default case](#case-statement-with-default-case)
     - [Case statement with partial output assignments](#case-statement-with-partial-output-assignments)
-    - [Switch case statment with overlapping cases](#switch-case-statment-with-overlapping-cases)
+    - [Switch case statement with overlapping cases](#switch-case-statement-with-overlapping-cases)
   - [Looping constructs](#looping-constructs)
     - [For loop](#for-loop)
     - [For generate](#for-generate)
@@ -2107,7 +2107,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166135610-aedd86ce-80dc-46da-9292-0966ef7f4d15.png)
 
-### Switch case statment with overlapping cases
+### Switch case statement with overlapping cases
 
 **Verilog code for the RTL Design**
 
