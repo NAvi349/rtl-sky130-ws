@@ -1211,7 +1211,7 @@ module incomp_if (input i0 , input i1 , input i2 , output reg y);
 endmodule
 ```
 
-* Output gets latched to i1
+* Output is latched.
 * Follows i1 when i0 is logic HIGH.
 
 ![image](https://user-images.githubusercontent.com/66086031/166132156-34de7081-acd7-43b0-a644-7d6387002c44.png)
@@ -1258,8 +1258,8 @@ always @ (*)
 endmodule
 ```
 
-* Output follows i1 or i3 depending on whether i0 or i2 is logic HIGH respectively.
-* If both i0 and i2 is logic LOW, then output **retains** the value of i3.
+* Output is latched.
+* Output follows i1 or i3 depending on whether i0 or i2 is logic HIGH respectively.* 
 
 ##### RTL Simulation
 
