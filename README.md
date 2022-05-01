@@ -1211,7 +1211,7 @@ module incomp_if (input i0 , input i1 , input i2 , output reg y);
 endmodule
 ```
 
-* Output gets latched to i1 when i1 is zero. 
+* Output gets latched to i0 when i1 is zero. 
 
 ![image](https://user-images.githubusercontent.com/66086031/166132156-34de7081-acd7-43b0-a644-7d6387002c44.png)
 
