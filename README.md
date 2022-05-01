@@ -1849,6 +1849,7 @@ endmodule
 - This is a **ACTIVE LOW** enable latch.
 
 <details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
+  
 ```verilog
 module incomp_case(i0, i1, i2, sel, y);
   wire _00_;
