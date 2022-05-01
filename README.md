@@ -924,6 +924,7 @@ endmodule
 In this the output q is needs only the value of count[0], so count[1], count[2] are not present in the synthesized netlist.
 
 ![image](https://user-images.githubusercontent.com/66086031/166100142-616c814e-2bb8-42b7-bb95-51d09cae00b6.png)
+![image](https://user-images.githubusercontent.com/66086031/166151017-39a8c438-257e-460c-8208-4df6b3938ec0.png)
 
 ```verilog
 module counter_opt(clk, reset, q);
