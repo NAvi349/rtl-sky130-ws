@@ -1624,6 +1624,88 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166135610-aedd86ce-80dc-46da-9292-0966ef7f4d15.png)
 
+### Switch case statment with overlapping cases
+
+**Verilog code for the RTL Design**
+
+```verilog
+module bad_case (input i0 , input i1, input i2, input i3 , input [1:0] sel, output reg y);
+	always @(*)	begin
+		case(sel)
+			2'b00: y = i0;
+			2'b01: y = i1;
+			2'b10: y = i2;
+			2'b1?: y = i3;
+			//2'b11: y = i3;
+		endcase
+	end
+
+endmodule
+```
+
+**Expected circuit**
+
+
+**RTL Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166136382-8952619a-ab71-4cce-bad7-0489dc41a25e.png)
+
+**Synthesis Report**
+
+![image](https://user-images.githubusercontent.com/66086031/166136433-d1690c83-4863-4d6a-b671-b6e1bcbc482f.png)
+
+**Synthesized netlist**
+
+![image](https://user-images.githubusercontent.com/66086031/166136468-a901d035-cb84-4c5d-bd81-fc3d23d01fd2.png)
+
+**Verilog code for the synthesized netlist**
+
+```verilog
+module bad_case(i0, i1, i2, i3, sel, y);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  wire _08_;
+  wire _09_;
+  wire _10_;
+  wire _11_;
+  wire _12_;
+  wire _13_;
+  wire _14_;
+  wire _15_;
+  input i0;
+  input i1;
+  input i2;
+  input i3;
+  input [1:0] sel;
+  output y;
+  sky130_fd_sc_hd__mux4_2 _16_ (
+    .A0(_09_),
+    .A1(_10_),
+    .A2(_11_),
+    .A3(_12_),
+    .S0(_13_),
+    .S1(_14_),
+    .X(_15_)
+  );
+  assign _13_ = sel[0];
+  assign _14_ = sel[1];
+  assign _11_ = i2;
+  assign _10_ = i1;
+  assign _09_ = i0;
+  assign _12_ = i3;
+  assign y = _15_;
+endmodule
+```
+
+**Gate Level Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166136683-61d26c7b-6346-4740-b770-a6ebd4f7a76f.png)
 
 
 # Author
