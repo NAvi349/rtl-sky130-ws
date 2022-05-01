@@ -1718,6 +1718,117 @@ endmodule
 * When sel = 11, output follows i3 only.
 * No latch is inferred as there is no missing case.
 
+
+### Looping constructs
+
+<!-- include syntax in theory for codes -->
+
+#### For loop
+* Used for evaluating expressions repeatedly.
+* Useful when working with a wide MUX/DEMUX.
+* Used inside always() block.
+
+![image](https://user-images.githubusercontent.com/66086031/166141527-977b36da-7971-44d3-a5e5-4b0fa9c5e55d.png)
+![image](https://user-images.githubusercontent.com/66086031/166141593-9ebd27b8-e1c8-4d44-84b9-bbe776fb8f6b.png)
+
+
+#### For generate
+* Used for instantiating multiple instances of same hardware.
+* Used outside of always() block.
+
+### Looping constructs Labs
+
+#### Muliplexer using For loop
+
+**Code for RTL Design**
+
+```code
+module mux_generate (input i0 , input i1, input i2 , input i3 , input [1:0] sel  , output reg y);
+	wire [3:0] i_int;
+	assign i_int = {i3,i2,i1,i0};
+	integer k;
+	always @ (*)
+		begin
+		for(k = 0; k < 4; k=k+1) begin
+			if(k == sel)
+				y = i_int[k];
+		end
+	end
+endmodule
+```
+
+**RTL Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166142370-0d7cc54e-7a7b-4104-b53c-29f7489edec5.png)
+
+**Synthesis Report**
+
+![image](https://user-images.githubusercontent.com/66086031/166142503-7d918385-19df-4de4-8032-adbe4b4b75dc.png)
+
+**Synthesized netlist**
+
+![image](https://user-images.githubusercontent.com/66086031/166142597-7c62d613-8535-4e09-93c2-83ece95ae882.png)
+
+**Verilog code for synthesized netlist**
+
+```verilog
+module mux_generate(i0, i1, i2, i3, sel, y);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  wire _08_;
+  wire _09_;
+  wire _10_;
+  wire _11_;
+  wire _12_;
+  wire _13_;
+  wire _14_;
+  input i0;
+  input i1;
+  input i2;
+  input i3;
+  wire [3:0] i_int;
+  wire [31:0] k;
+  input [1:0] sel;
+  output y;
+  reg y;
+  sky130_fd_sc_hd__mux4_2 _15_ (
+    .A0(_09_),
+    .A1(_10_),
+    .A2(_11_),
+    .A3(_12_),
+    .S0(_13_),
+    .S1(_14_),
+    .X(_07_)
+  );
+  always @*
+    if (!_01_) y = _00_;
+  assign i_int = { i3, i2, i1, i0 };
+  assign k = 32'd4;
+  assign _08_ = 1'h0;
+  assign _14_ = sel[1];
+  assign _13_ = sel[0];
+  assign _09_ = i0;
+  assign _10_ = i1;
+  assign _11_ = i2;
+  assign _12_ = i3;
+  assign _00_ = _07_;
+  assign _01_ = _08_;
+endmodule
+```
+
+**Gate Level Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166142729-d531a495-72dd-4d97-952a-36c791d41c01.png)
+
+####
+
+
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
 (As of April 2022)
