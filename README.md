@@ -65,9 +65,11 @@
     + [Incomplete Case statement lab](#incomplete-case-statement-lab)
     + [Case statement with default case](#case-statement-with-default-case)
     + [Case statement with partial output assignments](#case-statement-with-partial-output-assignments)
+    + [Switch case statment with overlapping cases](#switch-case-statment-with-overlapping-cases)
 - [Author](#author)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
+
 
 # Day 1
 ## iverilog
