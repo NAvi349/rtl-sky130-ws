@@ -1259,7 +1259,8 @@ endmodule
 ```
 
 * Output is latched.
-* Output follows i1 or i3 depending on whether i0 or i2 is logic HIGH respectively.* 
+* Output follows i1 or i3 depending on whether i0 or i2 is logic HIGH respectively.
+* If both of them are logic LOW, output retains its previous value.
 
 ##### RTL Simulation
 
@@ -1272,6 +1273,8 @@ endmodule
 ##### Synthesized netlist
 
 ![image](https://user-images.githubusercontent.com/66086031/166133005-1c4355d8-96ce-4462-92c8-c90135d5baff.png)
+
+Here enable is active LOW. So NOR gate is used for the enable pin logic.
 
 ##### RTL Code for synthesized netlist
 
