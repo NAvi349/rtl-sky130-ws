@@ -1706,7 +1706,9 @@ endmodule
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166136683-61d26c7b-6346-4740-b770-a6ebd4f7a76f.png)
-
+* There is a synthesis simulation mismatch here. 
+* When sel = 10, output follows i2 only.
+* When sel = 11, output follows i3 only.
 
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
