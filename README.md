@@ -1323,6 +1323,85 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166133087-e4b31908-d4f7-41d4-981a-60532bca2426.png)
 
+### Incomplete Case statement lab
+
+#### Verilog code for the RTL Design
+
+```verilog
+module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
+	always @ (*)
+	begin
+		case(sel)
+			2'b00 : y = i0;
+			2'b01 : y = i1;
+		endcase
+	end
+endmodule
+```
+
+#### RTL Simulation
+
+![image](https://user-images.githubusercontent.com/66086031/166133652-36713cda-597f-45a1-be7e-121dc356dfa2.png)
+
+#### Synthesis Report
+
+![image](https://user-images.githubusercontent.com/66086031/166133735-50c95db9-fbcd-461b-a71b-e21786cef936.png)
+
+#### Synthesized netlist
+
+![image](https://user-images.githubusercontent.com/66086031/166133779-8e6a4926-8ce4-4930-b19b-7967c1b81aab.png)
+
+#### Verilog code for the synthesized netlist
+
+```verilog
+module incomp_case(i0, i1, i2, sel, y);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  wire _08_;
+  wire _09_;
+  wire _10_;
+  input i0;
+  input i1;
+  input i2;
+  input [1:0] sel;
+  output y;
+  reg y;
+  sky130_fd_sc_hd__nand2b_1 _11_ (
+    .A_N(_10_),
+    .B(_09_),
+    .Y(_08_)
+  );
+  sky130_fd_sc_hd__mux2_1 _12_ (
+    .A0(_07_),
+    .A1(_06_),
+    .S(_08_),
+    .X(_04_)
+  );
+  sky130_fd_sc_hd__buf_1 _13_ (
+    .A(_10_),
+    .X(_05_)
+  );
+  always @*
+    if (!_01_) y = _00_;
+  assign _10_ = sel[1];
+  assign _09_ = sel[0];
+  assign _07_ = i1;
+  assign _06_ = i0;
+  assign _00_ = _04_;
+  assign _01_ = _05_;
+endmodule
+```
+
+#### Gate Level Simulation
+
+![image](https://user-images.githubusercontent.com/66086031/166133921-83592bc3-331b-4f53-87e5-cc1667d3136f.png)
+
 
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
