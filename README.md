@@ -1826,8 +1826,277 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166142729-d531a495-72dd-4d97-952a-36c791d41c01.png)
 
-####
+#### DeMUX using case statement
 
+**Code for RTL Design**
+
+```verilog
+module demux_case (output o0, output o1, output o2, output o3, output o4, output o5, output o6, output o7, input [2:0] sel, input i);
+	reg [7:0]y_int;
+	assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+	integer k;
+		always @ (*) begin
+			y_int = 8'b0;
+			case(sel)
+				3'b000 : y_int[0] = i;
+				3'b001 : y_int[1] = i;
+				3'b010 : y_int[2] = i;
+				3'b011 : y_int[3] = i;
+				3'b100 : y_int[4] = i;
+				3'b101 : y_int[5] = i;
+				3'b110 : y_int[6] = i;
+				3'b111 : y_int[7] = i;
+			endcase
+		end
+endmodule
+```
+
+**RTL Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166143063-77c5d0ff-6551-4b12-886d-af7c1ffda6b4.png)
+
+
+**Synthesis Report**
+
+![image](https://user-images.githubusercontent.com/66086031/166143348-eb995d6e-1554-4463-be38-667820dbfece.png)
+
+
+**Synthesized netlist**
+
+![image](https://user-images.githubusercontent.com/66086031/166143337-e1a00674-8f42-44a5-8f3a-90cc7d730926.png)
+
+
+**Verilog code for synthesized netlist**
+
+```verilog
+module demux_case(o0, o1, o2, o3, o4, o5, o6, o7, sel, i);
+  input i;
+  output o0;
+  output o1;
+  output o2;
+  output o3;
+  output o4;
+  output o5;
+  output o6;
+  output o7;
+  input [2:0] sel;
+  wire [7:0] y_int;
+  sky130_fd_sc_hd__and4b_1 _0_ (
+    .A_N(sel[0]),
+    .B(i),
+    .C(sel[2]),
+    .D(sel[1]),
+    .X(o6)
+  );
+  sky130_fd_sc_hd__and4b_1 _1_ (
+    .A_N(sel[1]),
+    .B(sel[0]),
+    .C(i),
+    .D(sel[2]),
+    .X(o5)
+  );
+  sky130_fd_sc_hd__and4b_1 _2_ (
+    .A_N(sel[2]),
+    .B(sel[1]),
+    .C(sel[0]),
+    .D(i),
+    .X(o3)
+  );
+  sky130_fd_sc_hd__nor4bb_1 _3_ (
+    .A(sel[2]),
+    .B(sel[1]),
+    .C_N(sel[0]),
+    .D_N(i),
+    .Y(o1)
+  );
+  sky130_fd_sc_hd__nor4bb_1 _4_ (
+    .A(sel[2]),
+    .B(sel[0]),
+    .C_N(i),
+    .D_N(sel[1]),
+    .Y(o2)
+  );
+  sky130_fd_sc_hd__nor4bb_1 _5_ (
+    .A(sel[1]),
+    .B(sel[0]),
+    .C_N(i),
+    .D_N(sel[2]),
+    .Y(o4)
+  );
+  sky130_fd_sc_hd__nor4b_1 _6_ (
+    .A(sel[2]),
+    .B(sel[1]),
+    .C(sel[0]),
+    .D_N(i),
+    .Y(o0)
+  );
+  sky130_fd_sc_hd__and4_1 _7_ (
+    .A(sel[2]),
+    .B(sel[1]),
+    .C(sel[0]),
+    .D(i),
+    .X(o7)
+  );
+  assign y_int = { o7, o6, o5, o4, o3, o2, o1, o0 };
+endmodule
+```
+
+**Gate Level Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166143473-37303b51-64e1-4111-975c-ba0e65694e03.png)
+
+#### DeMUX using for loop
+
+**Code for RTL Design**
+
+```verilog
+module demux_generate (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+	reg [7:0] y_int;
+	assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+	integer k;
+	always @ (*) begin
+		y_int = 8'b0;
+		for(k = 0; k < 8; k++) begin
+			if(k == sel)
+				y_int[k] = i;
+		end
+	end
+endmodule
+```
+
+* Output is initialized to zero.
+* k iterates from 0 to N-1.
+* When k equals sel, the corresponding output will get the input.
+
+**RTL Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166143635-ef278506-57c0-46e0-9d24-60e0bdda534c.png)
+
+**Synthesis Report**
+
+![image](https://user-images.githubusercontent.com/66086031/166143658-0a6abb84-01cf-49d2-89f7-f0a7e797835f.png)
+
+**Synthesized netlist**
+
+![image](https://user-images.githubusercontent.com/66086031/166143688-2acc2980-dd13-46d1-9383-97b11e0c6f61.png)
+
+**Verilog code for synthesized netlist**
+
+```verilog
+module demux_generate(o0, o1, o2, o3, o4, o5, o6, o7, sel, i);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  wire _08_;
+  wire _09_;
+  wire _10_;
+  wire _11_;
+  wire _12_;
+  wire _13_;
+  wire _14_;
+  wire _15_;
+  wire _16_;
+  wire _17_;
+  wire _18_;
+  wire _19_;
+  wire _20_;
+  wire _21_;
+  wire _22_;
+  wire _23_;
+  wire _24_;
+  input i;
+  wire [31:0] k;
+  output o0;
+  output o1;
+  output o2;
+  output o3;
+  output o4;
+  output o5;
+  output o6;
+  output o7;
+  input [2:0] sel;
+  wire [7:0] y_int;
+  sky130_fd_sc_hd__and4_1 _25_ (
+    .A(_24_),
+    .B(_22_),
+    .C(_23_),
+    .D(_13_),
+    .X(_21_)
+  );
+  sky130_fd_sc_hd__and4b_1 _26_ (
+    .A_N(_22_),
+    .B(_23_),
+    .C(_13_),
+    .D(_24_),
+    .X(_20_)
+  );
+  sky130_fd_sc_hd__and4b_1 _27_ (
+    .A_N(_23_),
+    .B(_13_),
+    .C(_24_),
+    .D(_22_),
+    .X(_19_)
+  );
+  sky130_fd_sc_hd__nor4bb_1 _28_ (
+    .A(_22_),
+    .B(_23_),
+    .C_N(_13_),
+    .D_N(_24_),
+    .Y(_18_)
+  );
+  sky130_fd_sc_hd__and4b_1 _29_ (
+    .A_N(_24_),
+    .B(_22_),
+    .C(_23_),
+    .D(_13_),
+    .X(_17_)
+  );
+  sky130_fd_sc_hd__nor4bb_1 _30_ (
+    .A(_24_),
+    .B(_22_),
+    .C_N(_23_),
+    .D_N(_13_),
+    .Y(_16_)
+  );
+  sky130_fd_sc_hd__nor4bb_1 _31_ (
+    .A(_24_),
+    .B(_23_),
+    .C_N(_13_),
+    .D_N(_22_),
+    .Y(_15_)
+  );
+  sky130_fd_sc_hd__nor4b_1 _32_ (
+    .A(_24_),
+    .B(_22_),
+    .C(_23_),
+    .D_N(_13_),
+    .Y(_14_)
+  );
+  assign k = 32'd8;
+  assign y_int = { o7, o6, o5, o4, o3, o2, o1, o0 };
+  assign _24_ = sel[2];
+  assign _22_ = sel[0];
+  assign _23_ = sel[1];
+  assign _13_ = i;
+  assign o7 = _21_;
+  assign o6 = _20_;
+  assign o5 = _19_;
+  assign o4 = _18_;
+  assign o3 = _17_;
+  assign o2 = _16_;
+  assign o1 = _15_;
+  assign o0 = _14_;
+endmodule
+```
+
+**Gate Level Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166143777-da63d6e9-f1d0-4ed4-9faa-ed56263b1085.png)
 
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
