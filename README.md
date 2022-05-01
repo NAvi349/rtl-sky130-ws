@@ -1175,26 +1175,73 @@ endmodule
 
 
 # Day 5
-
-## If else constructs
+## Theory
+### If else constructs
 ![image](https://user-images.githubusercontent.com/66086031/166130661-a6c24603-a7f4-4b2c-80b3-c7b4dfd2b2ff.png)
 
-## Inferred latches for incomplete if else statements
+### Inferred latches for incomplete if else statements
 ![image](https://user-images.githubusercontent.com/66086031/166130722-6d970b01-69eb-47a3-9dbb-1991df7ae4b5.png)
 In a combinational circuit latches should NOT be inferred.
 
-## Case statment
+### Case statment
 ![image](https://user-images.githubusercontent.com/66086031/166130768-5b1b5e74-21a7-4f9c-8a5e-f60bd403fb6b.png)
 
-## Caveats 
+### Caveats 
 ![image](https://user-images.githubusercontent.com/66086031/166130801-67dba51c-ece1-4402-a396-da3b919e387f.png)
 use default to avoid inferred latches
 
-Partial assignment of outputs
+### Partial assignment of outputs
 ![image](https://user-images.githubusercontent.com/66086031/166131729-c8cbaaf3-a292-4294-a89c-13003e0eaca8.png)
 
-Avoid overlapping case
+### Avoid overlapping case
 ![image](https://user-images.githubusercontent.com/66086031/166131811-f55f8bf3-87dd-4916-94a8-8d2ef97154b4.png)
+
+## Labs
+
+### Incomplete if
+#### Example 1
+
+```verilog
+module incomp_if (input i0 , input i1 , input i2 , output reg y);
+	always @ (*)
+	begin
+		if(i0)
+			y <= i1;
+	end
+endmodule
+```
+
+* Output gets latched to i1 when i1 is zero. 
+
+![image](https://user-images.githubusercontent.com/66086031/166132156-34de7081-acd7-43b0-a644-7d6387002c44.png)
+
+* D Latch if inferred during synthesis.
+
+![image](https://user-images.githubusercontent.com/66086031/166132220-f46cd932-e03d-4bc7-a8c0-4e9e8c01b883.png)
+
+* Synthesized netlist
+ 
+![image](https://user-images.githubusercontent.com/66086031/166132264-b027d580-4d1e-4623-b901-1a1d31393194.png)
+
+Verilog Code for synthesized netlist
+```verilog
+module incomp_if(i0, i1, i2, y);
+  input i0;
+  input i1;
+  input i2;
+  output y;
+  reg y;
+  always @*
+    if (i0) y = i1;
+endmodule
+```
+
+* GLS
+![image](https://user-images.githubusercontent.com/66086031/166132379-830d7b66-0c0e-4035-9e35-cd078a9b9fed.png)
+
+
+
+
 
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
