@@ -1241,7 +1241,84 @@ endmodule
 ![image](https://user-images.githubusercontent.com/66086031/166132379-830d7b66-0c0e-4035-9e35-cd078a9b9fed.png)
 
 
+#### Example 2
 
+##### Verilog code for RTL Design
+
+```verilog
+module incomp_if2 (input i0 , input i1 , input i2 , input i3, output reg y);
+always @ (*)
+	begin
+		if(i0)
+			y <= i1;
+		else if (i2)
+			y <= i3;
+
+	end
+endmodule
+```
+
+* Output follows i1 or i3 depending on whether i0 or i2 is logic HIGH respectively.
+* If both i0 and i2 is logic LOW, then output **retains** the value of i3.
+
+##### RTL Simulation
+
+[image](https://user-images.githubusercontent.com/66086031/166132742-09433da9-c7f8-4a71-a4e2-eb08feefc323.png)
+
+##### Synthesis report
+
+![image](https://user-images.githubusercontent.com/66086031/166132932-3f566904-34ef-472d-9be8-c606d096080c.png)
+
+##### Synthesized netlist
+
+![image](https://user-images.githubusercontent.com/66086031/166133005-1c4355d8-96ce-4462-92c8-c90135d5baff.png)
+
+##### RTL Code for synthesized netlist
+
+```verilog
+module incomp_if2(i0, i1, i2, i3, y);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  input i0;
+  input i1;
+  input i2;
+  input i3;
+  output y;
+  reg y;
+  
+  sky130_fd_sc_hd__mux2_1 _08_ (
+    .A0(_07_),
+    .A1(_05_),
+    .S(_04_),
+    .X(_02_)
+  );
+  sky130_fd_sc_hd__nor2_1 _09_ (
+    .A(_04_),
+    .B(_06_),
+    .Y(_03_)
+  );
+  
+  always @*
+    if (!_01_) y = _00_;
+	
+  assign _07_ = i3;
+  assign _05_ = i1;
+  assign _04_ = i0;
+  assign _00_ = _02_;
+  assign _06_ = i2;
+  assign _01_ = _03_;
+endmodule
+```
+
+##### Gate Level Simulation
+
+![image](https://user-images.githubusercontent.com/66086031/166133087-e4b31908-d4f7-41d4-981a-60532bca2426.png)
 
 
 # Author
