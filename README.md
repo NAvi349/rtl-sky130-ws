@@ -1516,13 +1516,119 @@ endmodule
 
 ### Case statement with partial output assignments
 
-#### Verilog code for the RTL Design
-#### Expected circuit
-#### RTL Simulation
-#### Synthesis Report
-#### Synthesized netlist
-#### Verilog code for the synthesized netlist
-#### Gate Level Simulation
+**Verilog code for the RTL Design**
+
+```verilog
+module partial_case_assign (input i0 , input i1 , input i2 , input [1:0] sel, output reg y , output reg x);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : begin
+			y = i0;
+			x = i2;
+			end
+		2'b01 : y = i1;
+		default : 
+		begin
+			x = i1;
+			y = i2;
+		end
+	endcase
+end
+endmodule
+```
+
+**Expected circuit**
+
+![image](https://user-images.githubusercontent.com/66086031/166134950-6579dda4-c392-4853-a8f7-4257a591c9be.png)
+
+**RTL Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166135649-34cc0cf7-f206-46fa-b662-c4447ffe00ad.png)
+
+**Synthesis Report**
+
+![image](https://user-images.githubusercontent.com/66086031/166135166-e6b3b023-6667-4e7d-890f-d076f34bc486.png)
+
+**Synthesized netlist**
+
+![image](https://user-images.githubusercontent.com/66086031/166135296-95c36363-e761-48f9-93fe-f84ccf8d7a0e.png)
+
+
+**Verilog code for the synthesized netlist**
+
+```verilog
+module partial_case_assign(i0, i1, i2, sel, y, x);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  wire _08_;
+  wire _09_;
+  wire _10_;
+  wire _11_;
+  wire _12_;
+  wire _13_;
+  wire _14_;
+  wire _15_;
+  wire _16_;
+  input i0;
+  input i1;
+  input i2;
+  input [1:0] sel;
+  output x;
+  reg x;
+  output y;
+  sky130_fd_sc_hd__nand2b_1 _17_ (
+    .A_N(_15_),
+    .B(_14_),
+    .Y(_08_)
+  );
+  sky130_fd_sc_hd__nor2_1 _18_ (
+    .A(_15_),
+    .B(_14_),
+    .Y(_12_)
+  );
+  sky130_fd_sc_hd__mux2_1 _19_ (
+    .A0(_10_),
+    .A1(_11_),
+    .S(_12_),
+    .X(_07_)
+  );
+  sky130_fd_sc_hd__and3b_1 _20_ (
+    .A_N(_15_),
+    .B(_14_),
+    .C(_10_),
+    .X(_13_)
+  );
+  sky130_fd_sc_hd__a221o_1 _21_ (
+    .A1(_15_),
+    .A2(_11_),
+    .B1(_09_),
+    .B2(_12_),
+    .C1(_13_),
+    .X(_16_)
+  );
+  always @*
+    if (_01_) x = _00_;
+  assign _15_ = sel[1];
+  assign _14_ = sel[0];
+  assign _01_ = _08_;
+  assign _10_ = i1;
+  assign _11_ = i2;
+  assign _00_ = _07_;
+  assign _09_ = i0;
+  assign y = _16_;
+endmodule
+```
+
+**Gate Level Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166135610-aedd86ce-80dc-46da-9292-0966ef7f4d15.png)
 
 
 
