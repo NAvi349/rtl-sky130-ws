@@ -137,18 +137,13 @@ iverilog good_mux.v tb_good_mux.v
 gtkwave tb_good_mux.vcd
 ```
 
-<!--
-![image size](https://user-images.githubusercontent.com/66086031/165417995-089755e8-546b-477b-bbcb-506572ff6a28.png)
 
-![image](https://user-images.githubusercontent.com/66086031/165419193-cde4de4c-3e65-4f57-be18-92b260c43303.png) -->
 
 ![image](https://user-images.githubusercontent.com/66086031/165419867-1570fad8-5931-4101-a43f-8a62b0a14d48.png)
 
+**RTL Simulation**
+
 ![image](https://user-images.githubusercontent.com/66086031/165419920-0d55d648-ba66-405f-b6e4-fcddf89c179c.png)
-
-<!-- ![image](https://user-images.githubusercontent.com/66086031/165420217-efe5c5ec-7f77-4333-ac59-01766f1f71e4.png)
-
-![image](https://user-images.githubusercontent.com/66086031/165420579-2c0c7b6e-54de-4b08-8855-5103f11a869b.png) -->
 
 ![image](https://user-images.githubusercontent.com/66086031/165420634-55d8522f-9404-4dc0-bf6a-9daa2a8ceef0.png)
 
@@ -276,6 +271,13 @@ gvim ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 - 1v8 - voltage
 - dot Lib contains standard cell features and specification
 - Also specifies the leakage power and also the timing information for different input combinations
+
+```mermaid
+graph TD;
+
+lower_threshold_voltage --> faster_cell --> more_leakage_power
+higher_threshold_voltage --> slower_cell --> less_leakage_power
+```
 
 ![image](https://user-images.githubusercontent.com/66086031/166147398-65239ea8-a720-4e2a-a952-70fc96a92d11.png)
 
