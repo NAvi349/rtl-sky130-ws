@@ -1657,7 +1657,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166136433-d1690c83-4863-4d6a-b671-b6e1bcbc482f.png)
 
-**No latch is inferred**
+**No latch is inferred as there is no missing case**
 
 **Synthesized netlist**
 
