@@ -2098,6 +2098,154 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166143777-da63d6e9-f1d0-4ed4-9faa-ed56263b1085.png)
 
+#### Ripple Carry Adder using for generate
+
+**Verilog code for RTL Design**
+
+```verilog
+module fa (input a , input b , input c, output co , output sum);
+	assign {co,sum}  = a + b + c ;
+endmodule
+```
+
+```verilog
+module rca (input [7:0] num1 , input [7:0] num2 , output [8:0] sum);
+	wire [7:0] int_sum;
+	wire [7:0]int_co;
+
+	genvar i;
+	generate
+		for (i = 1 ; i < 8; i=i+1) begin
+			fa u_fa_1 (.a(num1[i]),.b(num2[i]),.c(int_co[i-1]),.co(int_co[i]),.sum(int_sum[i]));
+		end
+	endgenerate
+	fa u_fa_0 (.a(num1[0]),.b(num2[0]),.c(1'b0),.co(int_co[0]),.sum(int_sum[0]));
+
+
+	assign sum[7:0] = int_sum;
+	assign sum[8] = int_co[7];
+endmodule
+```
+
+**RTL Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166144247-06cb3bba-4fa1-466e-b4d4-10ce7b3d7f84.png)
+
+**Synthesis Report**
+
+![image](https://user-images.githubusercontent.com/66086031/166144326-337f2028-e590-468c-93b8-696f2ddea9a9.png)
+
+**Synthesized netlist**
+
+![image](https://user-images.githubusercontent.com/66086031/166144375-b2ca4f46-f47d-4685-991b-7e2da9a29ce7.png)
+
+**Verilog code for synthesized netlist**
+
+```verilog
+module fa(a, b, c, co, sum);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  wire _5_;
+  wire _6_;
+  wire _7_;
+  input a;
+  input b;
+  input c;
+  output co;
+  output sum;
+  sky130_fd_sc_hd__maj3_1 _8_ (
+    .A(_5_),
+    .B(_3_),
+    .C(_4_),
+    .X(_6_)
+  );
+  sky130_fd_sc_hd__xor3_1 _9_ (
+    .A(_5_),
+    .B(_3_),
+    .C(_4_),
+    .X(_7_)
+  );
+  assign _5_ = c;
+  assign _3_ = a;
+  assign _4_ = b;
+  assign co = _6_;
+  assign sum = _7_;
+endmodule
+
+module rca(num1, num2, sum);
+  wire [7:0] int_co;
+  wire [7:0] int_sum;
+  input [7:0] num1;
+  input [7:0] num2;
+  output [8:0] sum;
+  fa \genblk1[1].u_fa_1  (
+    .a(num1[1]),
+    .b(num2[1]),
+    .c(int_co[0]),
+    .co(int_co[1]),
+    .sum(int_sum[1])
+  );
+  fa \genblk1[2].u_fa_1  (
+    .a(num1[2]),
+    .b(num2[2]),
+    .c(int_co[1]),
+    .co(int_co[2]),
+    .sum(int_sum[2])
+  );
+  fa \genblk1[3].u_fa_1  (
+    .a(num1[3]),
+    .b(num2[3]),
+    .c(int_co[2]),
+    .co(int_co[3]),
+    .sum(int_sum[3])
+  );
+  fa \genblk1[4].u_fa_1  (
+    .a(num1[4]),
+    .b(num2[4]),
+    .c(int_co[3]),
+    .co(int_co[4]),
+    .sum(int_sum[4])
+  );
+  fa \genblk1[5].u_fa_1  (
+    .a(num1[5]),
+    .b(num2[5]),
+    .c(int_co[4]),
+    .co(int_co[5]),
+    .sum(int_sum[5])
+  );
+  fa \genblk1[6].u_fa_1  (
+    .a(num1[6]),
+    .b(num2[6]),
+    .c(int_co[5]),
+    .co(int_co[6]),
+    .sum(int_sum[6])
+  );
+  fa \genblk1[7].u_fa_1  (
+    .a(num1[7]),
+    .b(num2[7]),
+    .c(int_co[6]),
+    .co(int_co[7]),
+    .sum(int_sum[7])
+  );
+  fa u_fa_0 (
+    .a(num1[0]),
+    .b(num2[0]),
+    .c(1'h0),
+    .co(int_co[0]),
+    .sum(int_sum[0])
+  );
+  assign sum = { int_co[7], int_sum };
+endmodule
+```
+
+**Gate Level Simulation**
+
+![image](https://user-images.githubusercontent.com/66086031/166144487-64ed44d9-cf83-4e16-b836-046adf889373.png)
+
+
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
 (As of April 2022)
