@@ -1,4 +1,3 @@
-
 ![banner](https://user-images.githubusercontent.com/66086031/166130420-80f22914-3222-45fe-8cf7-687ed8c679e9.png)
 
 # Table of Contents
@@ -136,8 +135,6 @@ iverilog good_mux.v tb_good_mux.v
 ./a.out
 gtkwave tb_good_mux.vcd
 ```
-
-
 
 ![image](https://user-images.githubusercontent.com/66086031/165419867-1570fad8-5931-4101-a43f-8a62b0a14d48.png)
 
@@ -2750,8 +2747,8 @@ endmodule
 
 # Author
 
-Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
-Date as of this writing: 02 - 05 - 2022
+- Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
+- Date as of this writing: 02 - 05 - 2022
 
 # Acknowledgements
 
