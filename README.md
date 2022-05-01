@@ -2146,8 +2146,9 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166144375-b2ca4f46-f47d-4685-991b-7e2da9a29ce7.png)
 
-**Verilog code for synthesized netlist**
 
+<details> <summary>**Verilog code for synthesized netlist**</summary>
+	
 ```verilog
 module fa(a, b, c, co, sum);
   wire _0_;
@@ -2247,6 +2248,7 @@ module rca(num1, num2, sum);
   assign sum = { int_co[7], int_sum };
 endmodule
 ```
+</details>
 
 **Gate Level Simulation**
 
