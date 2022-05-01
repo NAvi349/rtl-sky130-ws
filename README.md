@@ -2147,7 +2147,7 @@ endmodule
 ![image](https://user-images.githubusercontent.com/66086031/166144375-b2ca4f46-f47d-4685-991b-7e2da9a29ce7.png)
 
 
-<details> <summary>**Verilog code for synthesized netlist**</summary>
+<details> <summary> <bold>Verilog code for synthesized netlist</bold> </summary>
 	
 ```verilog
 module fa(a, b, c, co, sum);
