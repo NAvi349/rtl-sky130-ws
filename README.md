@@ -2,7 +2,6 @@
 
 # Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Day 1](#day-1)
   - [iVerilog Introduction](#iverilog-introduction)
     - [Testbench](#testbench)
