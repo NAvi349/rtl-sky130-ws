@@ -1544,7 +1544,7 @@ endmodule
 
 **RTL Simulation**
 
-![image](https://user-images.githubusercontent.com/66086031/166135649-34cc0cf7-f206-46fa-b662-c4447ffe00ad.png)
+![image](https://user-images.githubusercontent.com/66086031/166135715-3fe844eb-d646-4d69-aeb7-4c4dfac33e31.png)
 
 **Synthesis Report**
 
@@ -1629,7 +1629,6 @@ endmodule
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166135610-aedd86ce-80dc-46da-9292-0966ef7f4d15.png)
-
 
 
 
