@@ -1540,7 +1540,8 @@ endmodule
 
 **Expected circuit**
 
-![image](https://user-images.githubusercontent.com/66086031/166134950-6579dda4-c392-4853-a8f7-4257a591c9be.png)
+![image](https://user-images.githubusercontent.com/66086031/166135764-285edbad-5b35-4cd5-8a6e-8b44a2d4abf0.png)
+
 
 **RTL Simulation**
 
