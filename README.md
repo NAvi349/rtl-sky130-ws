@@ -187,7 +187,9 @@ gvim ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 * 1v8 - voltage
 * dot Lib contains standard cell features and specification
 * Also specifies the leakage power and also the timing information for different input combinations 
-* **insert image of leakage power formula**
+![image](https://user-images.githubusercontent.com/66086031/166147398-65239ea8-a720-4e2a-a952-70fc96a92d11.png)
+
+
 
 ## Hierarchial vs Flat Synthesis
 ![image](https://user-images.githubusercontent.com/66086031/165768331-d2313630-10c8-4308-9543-9f72863aca2f.png)
@@ -667,6 +669,8 @@ endmodule
 ```
 
 ![image](https://user-images.githubusercontent.com/66086031/166094824-13d6af6a-28c0-4f13-8cfe-54226d99583f.png)
+![image](https://user-images.githubusercontent.com/66086031/166149764-bddd2293-a607-4078-834d-4f1b63ba4266.png)
+
 ![image](https://user-images.githubusercontent.com/66086031/166095172-6e6df88a-9306-40f4-866d-82ff14f10ea9.png)
 
 **Verilog Code for synthesized netlist:**
@@ -708,6 +712,8 @@ endmodule
 ```
 
 ![image](https://user-images.githubusercontent.com/66086031/166095328-27ad919a-d8f6-45d8-8460-e090e0d6e6ef.png)
+![image](https://user-images.githubusercontent.com/66086031/166149840-e725f3b5-232b-4e9a-a21b-a53f1bbf1299.png)
+
 ![image](https://user-images.githubusercontent.com/66086031/166096248-62b53982-2470-4a65-afb6-84336c2c7a1a.png)
 
 **Verilog code for synthesized netlist**
@@ -811,6 +817,8 @@ endmodule
 In this the Flip flops are initialized to logic HIGH after the reset. The input to the first flip flop is also logic HIGH. So the output of the second Flip flop is a constant logic HIGH.
 
 ![image](https://user-images.githubusercontent.com/66086031/166097167-351a6da8-14fc-495e-ade2-7b00bbd366f4.png)
+![image](https://user-images.githubusercontent.com/66086031/166150355-222c6054-4702-485e-91a1-070cbebf73e4.png)
+
 ![image](https://user-images.githubusercontent.com/66086031/166097310-36660e64-c32c-4ee1-8dda-acb53c310538.png)
 
 **Verilog code for the synthesized netlist**
@@ -851,6 +859,8 @@ endmodule
 Both the FFs are initialized to zero by the reset. Input given to the first FF is reflected one cycle later in the second FF due to Tcq.
 
 ![image](https://user-images.githubusercontent.com/66086031/166098848-17f92c87-f3e5-4054-9615-1f47afb08745.png)
+![image](https://user-images.githubusercontent.com/66086031/166150468-ee372d81-e742-4551-b065-ea4aa6da8afd.png)
+
 ![image](https://user-images.githubusercontent.com/66086031/166099090-a7a6d011-d51e-4ffd-a816-926e3c8477e3.png)
 
 
