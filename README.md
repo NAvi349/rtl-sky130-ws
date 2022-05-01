@@ -1262,11 +1262,12 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166132220-f46cd932-e03d-4bc7-a8c0-4e9e8c01b883.png)
 
-* Synthesized netlist
+**Synthesized netlist**
  
 ![image](https://user-images.githubusercontent.com/66086031/166132264-b027d580-4d1e-4623-b901-1a1d31393194.png)
 
-Verilog Code for synthesized netlist
+**Verilog Code for synthesized netlist**
+
 ```verilog
 module incomp_if(i0, i1, i2, y);
   input i0;
@@ -1279,13 +1280,13 @@ module incomp_if(i0, i1, i2, y);
 endmodule
 ```
 
-* GLS
+**GLS**
 ![image](https://user-images.githubusercontent.com/66086031/166132379-830d7b66-0c0e-4035-9e35-cd078a9b9fed.png)
 
 
 #### Example 2
 
-##### Verilog code for RTL Design
+**Verilog code for RTL Design**
 
 ```verilog
 module incomp_if2 (input i0 , input i1 , input i2 , input i3, output reg y);
@@ -1304,21 +1305,21 @@ endmodule
 * Output follows i1 or i3 depending on whether i0 or i2 is logic HIGH respectively.
 * If both of them are logic LOW, output retains its previous value.
 
-##### RTL Simulation
+**RTL Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166132742-09433da9-c7f8-4a71-a4e2-eb08feefc323.png)
 
-##### Synthesis report
+**Synthesis report**
 
 ![image](https://user-images.githubusercontent.com/66086031/166132932-3f566904-34ef-472d-9be8-c606d096080c.png)
 
-##### Synthesized netlist
+**Synthesized netlist**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133005-1c4355d8-96ce-4462-92c8-c90135d5baff.png)
 
 Here enable is active LOW. So NOR gate is used for the enable pin logic.
 
-##### RTL Code for synthesized netlist
+**RTL Code for synthesized netlist**
 
 ```verilog
 module incomp_if2(i0, i1, i2, i3, y);
@@ -1361,13 +1362,13 @@ module incomp_if2(i0, i1, i2, i3, y);
 endmodule
 ```
 
-##### Gate Level Simulation
+**Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133087-e4b31908-d4f7-41d4-981a-60532bca2426.png)
 
 ### Incomplete Case statement lab
 
-#### Verilog code for the RTL Design
+**Verilog code for the RTL Design**
 
 ```verilog
 module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
@@ -1380,22 +1381,23 @@ module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg
 	end
 endmodule
 ```
-#### Expected circuit
+**Expected circuit**
+
 ![image](https://user-images.githubusercontent.com/66086031/166133997-f1c0a36c-d1c2-4ee1-a8c0-23eed3a9a16f.png)
 
-#### RTL Simulation
+**RTL Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133652-36713cda-597f-45a1-be7e-121dc356dfa2.png)
 
-#### Synthesis Report
+**Synthesis Report**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133735-50c95db9-fbcd-461b-a71b-e21786cef936.png)
 
-#### Synthesized netlist
+**Synthesized netlist**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133779-8e6a4926-8ce4-4930-b19b-7967c1b81aab.png)
 
-#### Verilog code for the synthesized netlist
+**Verilog code for the synthesized netlist**
 
 ```verilog
 module incomp_case(i0, i1, i2, sel, y);
@@ -1442,14 +1444,14 @@ module incomp_case(i0, i1, i2, sel, y);
 endmodule
 ```
 
-#### Gate Level Simulation
+**Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133921-83592bc3-331b-4f53-87e5-cc1667d3136f.png)
 
 
 ### Case statement with default case
 
-#### Verilog code for the RTL Design
+**Verilog code for the RTL Design**
 
 ```verilog
 module comp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
@@ -1464,33 +1466,22 @@ end
 endmodule
 ```
 
-#### Expected circuit
+**Expected circuit**
 
 
-#### RTL Simulation
+**RTL Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166134219-c626ba7d-93df-46ba-b287-7fe8acee0b7e.png)
 
-#### Synthesis Report
+**Synthesis Report**
 
 ![image](https://user-images.githubusercontent.com/66086031/166134303-b3c94136-4e80-43f6-8979-541b024f5579.png)
 
-#### Synthesized netlist
+**Synthesized netlist**
 
 ![image](https://user-images.githubusercontent.com/66086031/166134352-b3fb2df0-302d-443b-b2bf-47999c67b2a8.png)
 
-#### Verilog code for the synthesized netlist
-
-### Case statement with partial output assignments
-
-#### Verilog code for the RTL Design
-#### Expected circuit
-#### RTL Simulation
-#### Synthesis Report
-#### Synthesized netlist
-#### Verilog code for the synthesized netlist
-#### Gate Level Simulation
-
+**Verilog code for the synthesized netlist**
 
 ```verilog
 module comp_case(i0, i1, i2, sel, y);
@@ -1539,9 +1530,22 @@ module comp_case(i0, i1, i2, sel, y);
 endmodule
 ```
 
-#### Gate Level Simulation
+**Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166134420-05eec508-3075-4b96-8dab-0b426e16c445.png)
+
+### Case statement with partial output assignments
+
+#### Verilog code for the RTL Design
+#### Expected circuit
+#### RTL Simulation
+#### Synthesis Report
+#### Synthesized netlist
+#### Verilog code for the synthesized netlist
+#### Gate Level Simulation
+
+
+
 
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
