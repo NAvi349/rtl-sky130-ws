@@ -2232,7 +2232,7 @@ end
 
 **Code for RTL Design**
 
-```code
+```verilog
 module mux_generate (input i0 , input i1, input i2 , input i3 , input [1:0] sel  , output reg y);
  wire [3:0] i_int;
  assign i_int = {i3,i2,i1,i0};
