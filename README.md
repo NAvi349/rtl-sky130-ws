@@ -1167,7 +1167,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166115229-79581cc1-341a-410a-92ef-b0d1d1de02ca.png)
 
-**Verilog code for the synthesized netlist**
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
 
 ```verilog
 module blocking_caveat(a, b, c, d);
@@ -1192,7 +1192,8 @@ module blocking_caveat(a, b, c, d);
   assign d = _4_;
 endmodule
 ```
-
+</details>
+	
 **GLS**
 
 ![image](https://user-images.githubusercontent.com/66086031/166115338-79631d5d-5ea1-4ddf-85f9-29abf976b0d7.png)
@@ -1301,8 +1302,7 @@ endmodule
 
 Here enable is active LOW. So NOR gate is used for the enable pin logic.
 
-**RTL Code for synthesized netlist**
-
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
 ```verilog
 module incomp_if2(i0, i1, i2, i3, y);
   wire _00_;
@@ -1343,7 +1343,8 @@ module incomp_if2(i0, i1, i2, i3, y);
   assign _01_ = _03_;
 endmodule
 ```
-
+</details>	
+	
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133087-e4b31908-d4f7-41d4-981a-60532bca2426.png)
@@ -1379,8 +1380,8 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166133779-8e6a4926-8ce4-4930-b19b-7967c1b81aab.png)
 
-**Verilog code for the synthesized netlist**
 
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
 ```verilog
 module incomp_case(i0, i1, i2, sel, y);
   wire _00_;
@@ -1425,7 +1426,9 @@ module incomp_case(i0, i1, i2, sel, y);
   assign _01_ = _05_;
 endmodule
 ```
-
+</details>
+	
+	
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166133921-83592bc3-331b-4f53-87e5-cc1667d3136f.png)
@@ -1463,7 +1466,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166134352-b3fb2df0-302d-443b-b2bf-47999c67b2a8.png)
 
-**Verilog code for the synthesized netlist**
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
 
 ```verilog
 module comp_case(i0, i1, i2, sel, y);
@@ -1511,7 +1514,8 @@ module comp_case(i0, i1, i2, sel, y);
   assign y = _13_;
 endmodule
 ```
-
+</details>
+	
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166134420-05eec508-3075-4b96-8dab-0b426e16c445.png)
@@ -1558,7 +1562,7 @@ endmodule
 ![image](https://user-images.githubusercontent.com/66086031/166135296-95c36363-e761-48f9-93fe-f84ccf8d7a0e.png)
 
 
-**Verilog code for the synthesized netlist**
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
 
 ```verilog
 module partial_case_assign(i0, i1, i2, sel, y, x);
@@ -1628,7 +1632,8 @@ module partial_case_assign(i0, i1, i2, sel, y, x);
   assign y = _16_;
 endmodule
 ```
-
+</details>
+	
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166135610-aedd86ce-80dc-46da-9292-0966ef7f4d15.png)
@@ -1672,8 +1677,8 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166136468-a901d035-cb84-4c5d-bd81-fc3d23d01fd2.png)
 
-**Verilog code for the synthesized netlist**
-
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
+	
 ```verilog
 module bad_case(i0, i1, i2, i3, sel, y);
   wire _00_;
@@ -1716,6 +1721,7 @@ module bad_case(i0, i1, i2, i3, sel, y);
   assign y = _15_;
 endmodule
 ```
+</details>
 
 **Gate Level Simulation**
 
@@ -1776,8 +1782,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166142597-7c62d613-8535-4e09-93c2-83ece95ae882.png)
 
-**Verilog code for synthesized netlist**
-
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
 ```verilog
 module mux_generate(i0, i1, i2, i3, sel, y);
   wire _00_;
@@ -1828,7 +1833,8 @@ module mux_generate(i0, i1, i2, i3, sel, y);
   assign _01_ = _08_;
 endmodule
 ```
-
+</details>
+	
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166142729-d531a495-72dd-4d97-952a-36c791d41c01.png)
@@ -1873,8 +1879,8 @@ endmodule
 ![image](https://user-images.githubusercontent.com/66086031/166143337-e1a00674-8f42-44a5-8f3a-90cc7d730926.png)
 
 
-**Verilog code for synthesized netlist**
-
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
+	
 ```verilog
 module demux_case(o0, o1, o2, o3, o4, o5, o6, o7, sel, i);
   input i;
@@ -1947,7 +1953,8 @@ module demux_case(o0, o1, o2, o3, o4, o5, o6, o7, sel, i);
   assign y_int = { o7, o6, o5, o4, o3, o2, o1, o0 };
 endmodule
 ```
-
+</details>
+	
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166143473-37303b51-64e1-4111-975c-ba0e65694e03.png)
@@ -1987,7 +1994,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166143688-2acc2980-dd13-46d1-9383-97b11e0c6f61.png)
 
-**Verilog code for synthesized netlist**
+<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
 
 ```verilog
 module demux_generate(o0, o1, o2, o3, o4, o5, o6, o7, sel, i);
@@ -2100,7 +2107,8 @@ module demux_generate(o0, o1, o2, o3, o4, o5, o6, o7, sel, i);
   assign o0 = _14_;
 endmodule
 ```
-
+</details>
+	
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166143777-da63d6e9-f1d0-4ed4-9faa-ed56263b1085.png)
