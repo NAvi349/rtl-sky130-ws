@@ -159,7 +159,6 @@ gtkwave tb_good_mux.vcd
 - Same testbench can be used for RTL Design and Synthesized netlist simulation.  
 - .lib - library collection of all the standard cells, different versions of the same gate is present
 
-
 ### Yosys synthesis flow
 
 ```mermaid
@@ -180,7 +179,7 @@ graph TD;
 
 ![image](https://user-images.githubusercontent.com/66086031/166118620-dd932eef-2e14-4689-a24d-d1e1e2098bcb.png)
 
-- The data should be available **Tsetup**  before the **capturing clock edge** comes. 
+- The data should be available **Tsetup**  before the **capturing clock edge** comes.
 - We need **fast cells** to satisfy **Max Delay** constraints.
 - Setup time constraints are always calculated with respect to the next clock edge.
 
@@ -202,8 +201,6 @@ graph TD;
 | More power      | Less power       |
 | More area       | Less area        |
 
-
-
 ### MUX Synthesis using Yosys
 
 ```console
@@ -217,24 +214,25 @@ write_verilog -noattr good_mux_netlist.v
 ```
 
 **Steps:**
-i. Include (read) the library and the verilog file
+
+1. Include (read) the library and the verilog file
 
 ![image](https://user-images.githubusercontent.com/66086031/165503013-3b7eef02-4c3a-43ce-a34e-1818ec314085.png)
 
-ii. Select top level module to Synthesize
+2. Select top level module to Synthesize
 
 ![image](https://user-images.githubusercontent.com/66086031/165505251-ba96fa2f-72ca-4e5d-a772-0c67fe8eeac2.png)
 
-iii. From the RTL Design(Verilog) generate gate-level netlist.
-iv. Then, map the synthesized netlist to the standard cell libraries **(Technology Mapping)**
+3. From the RTL Design(Verilog) generate gate-level netlist.
+4. Then, map the synthesized netlist to the standard cell libraries **(Technology Mapping)**
 
 ![image](https://user-images.githubusercontent.com/66086031/165506961-c02ebcf8-a8d5-4bf4-a916-7bbf81bccc08.png)
 
-iv. View the logic
+5. View the logic
 
 ![image](https://user-images.githubusercontent.com/66086031/165505986-34f1a631-1e4b-4529-b4a5-500c4eef4380.png)
 
-v.  Generate (Write) verilog file for the synthesized(mapped) netlist
+6. Generate (Write) verilog file for the synthesized(mapped) netlist
 
 ![image](https://user-images.githubusercontent.com/66086031/165508485-d74c18a2-9b0c-4bd7-b5d4-2e61f6ff9d0a.png)
 
@@ -371,11 +369,10 @@ endmodule
 
 </details>
 
-
 ### Why NAND gate is used (sometimes) by the tool for OR/NOR gate implementation?
 
 - The **logical effort** of a NAND gate is **less** than that of an equivalent NOR gate.
- 
+
 ![image](https://user-images.githubusercontent.com/66086031/166118137-1b1d4cb7-25b2-4ced-ad08-ec6fd74f879b.png)
 
 - Logical effort - the amount of current required to **drive** the **input** of a logic gate.
@@ -393,7 +390,7 @@ write_verilog -noattr multiple_modules_flat.v
 
 - **No submodules** are present in the (synthesized) verilog description
 
-**Synthesized netlist** 
+**Synthesized netlist**
 
 ![image](https://user-images.githubusercontent.com/66086031/165787631-693182aa-a0d9-48bc-a7f3-9aec425389b1.png)
 
@@ -402,7 +399,7 @@ write_verilog -noattr multiple_modules_flat.v
     <strong>RTL code for the synthesized netlist</strong>
   </summary>
 
-```verilog 
+```verilog
 
 module multiple_modules(a, b, c, y);
   wire _0_;
@@ -446,7 +443,8 @@ module multiple_modules(a, b, c, y);
   assign net1 = \u1.y ;
 endmodule  
 
-``` 
+```
+
 </details>
 
 ### Sub-module level synthesis
@@ -459,7 +457,7 @@ synth -top submodule1
 show
 ```
 
-- This is useful when when we have multiples instances of same module. 
+- This is useful when when we have multiples instances of same module.
 - So we can synthesize one module and replicate others.
 - Also, the tool may not do a good job in synthesizing a a massive design. So, we synthesize the submodules and combine them.
 
@@ -523,6 +521,7 @@ show dff_asyncres
 ### DFF with Asynchronous Set
 
 **Verilog code for the RTL Design**
+
 ```verilog
 module dff_async_set ( input clk,  input async_set, input d, output reg q );
  always @ (posedge clk, posedge async_set) begin
@@ -636,13 +635,16 @@ endmodule
 ## Intro to tool Optimizations
 
 ### Reducing the area and power
+
 - Some gates can be replaced with equivalent smaller gates to reduce the area and power.
 
 ### Constant Propagation
+
 - Sometimes, if one of inputs is tied to ground or VDD, the circuit can be replaced with a simpler circuit.
 
 ### Boolean Logic Optimization
-- k-maps or Quine-McCluskey algorithm can be used for simplifying the logic function. 
+
+- k-maps or Quine-McCluskey algorithm can be used for simplifying the logic function.
 
 ### Sequential Constant Propagation
 
@@ -652,9 +654,11 @@ endmodule
 ### State Optimization
 
 ### Retiming
+
 ![image](https://user-images.githubusercontent.com/66086031/166090131-2ffa70ae-44db-402b-8d85-f4d94e48e268.png)
 
 ### Cloning
+
 ![image](https://user-images.githubusercontent.com/66086031/166090136-50984c27-a025-4c5d-86f8-ff257e159dcc.png)
 
 ## Combinational Logic Optimizations lab
@@ -670,9 +674,11 @@ module opt_check (input a , input b , output y);
  assign y = a ? b : 0;
 endmodule
 ```
+
 > This reduces to **a AND b**
 
 **Command to provide optimization**
+
 ```console
 // this command removes the extra unneccessary logic
 opt_clean -purge
@@ -952,7 +958,6 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166095172-6e6df88a-9306-40f4-866d-82ff14f10ea9.png)
 
-
 <details><summary>
 <strong>Verilog Code for the synthesized netlist:</strong>
 </summary>
@@ -979,6 +984,7 @@ module dff_const1(clk, reset, q);
  assign _2_ = _0_;
 endmodule
 ```
+
 </details>
 
 ### Example 2
@@ -1094,6 +1100,7 @@ module dff_const3(clk, reset, q);
    assign _4_ = _1_;
 endmodule
 ```
+
 </details>
 
 ### Example 4
@@ -1262,7 +1269,6 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166151017-39a8c438-257e-460c-8208-4df6b3938ec0.png)
 
-
 **Synthesized netlist**
 
 ![image](https://user-images.githubusercontent.com/66086031/166100142-616c814e-2bb8-42b7-bb95-51d09cae00b6.png)
@@ -1304,6 +1310,7 @@ module counter_opt(clk, reset, q);
   assign _4_[0] = _0_;
 endmodule
 ```
+
 </details>
 
 ### Example 2
@@ -1326,7 +1333,7 @@ module counter_opt (input clk , input reset , output q);
 endmodule
 ```
 
-- In this q needs all the **three bits of count**. 
+- In this q needs all the **three bits of count**.
 - So, **three Flip Flops** are present in the synthesized netlist.
 
 ![image](https://user-images.githubusercontent.com/66086031/166100435-7ccb3b8e-8f5b-42b4-9277-c1e032603c08.png)
@@ -1459,7 +1466,7 @@ gtkwave tb_ternary_operator_mux.vcd
 
 ## Bad MUX
 
-- In this, **only the sel** is included in the sensitivity list. 
+- In this, **only the sel** is included in the sensitivity list.
 - So the **output** is **evaluated only when the sel changes**.
 - Even if the input changes, it will not be reflected in the output if sel does not change.
 
@@ -1517,6 +1524,7 @@ endmodule
 ## Blocking Statement - Synthesis Simulation Mismatch
 
 **Verilog code for the RTL Design**
+
 ```verilog
 module blocking_caveat (input a , input b , input  c, output reg d); 
  reg x;
@@ -1572,13 +1580,11 @@ endmodule
 
 </details>
 
-
 **Gate Level Simulation**
 
 ![image](https://user-images.githubusercontent.com/66086031/166115338-79631d5d-5ea1-4ddf-85f9-29abf976b0d7.png)
 
 # Day 5
-
 
 ## If else construct
 
@@ -1651,7 +1657,6 @@ end
 - Else, latches are inferred for that particular output.
 - Even, if default case is used.
 
-
 ## Avoid overlapping case
 
 ```verilog
@@ -1663,17 +1668,17 @@ always(*) begin
   endcase
 end
 ```
+
 - When two case conditions match, the simulator does not know which statement to execute.
 - Usually, it evaluates the first overlapping case statement.
-- So, it will **not match with synthesis simulation**. 
-
-
+- So, it will **not match with synthesis simulation**.
 
 ## Incomplete if construct lab
 
 ### Example 1
 
 **Verilog code for the RTL Design**
+
 ```verilog
 module incomp_if (input i0 , input i1 , input i2 , output reg y);
  always @ (*)
@@ -1686,6 +1691,7 @@ endmodule
 
 - Output is latched.
 - Follows i1 when i0 is logic HIGH.
+
 > Enable pin = i0
 
 **RTL Simulation**
@@ -1740,6 +1746,7 @@ endmodule
 - Output is **latched**.
 - Output follows i1 or i3 depending on whether i0 or i2 is logic HIGH respectively.
 - If **both** of them are logic **LOW**, output retains its previous value.
+
 > Enable = i0 OR i2
 
 **RTL Simulation**
@@ -1798,8 +1805,8 @@ module incomp_if2(i0, i1, i2, i3, y);
   assign _01_ = _03_;
 endmodule
 ```
-</details>
 
+</details>
 
 **Gate Level Simulation**
 
@@ -1820,7 +1827,9 @@ module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg
  end
 endmodule
 ```
+
 - Here latch is inferred.
+
 > Enable = **NOT(sel[1])**
 
 <!--**Expected circuit**
@@ -2003,6 +2012,7 @@ endmodule
 ```
 
 - **Latch** is inferred for **x** due to **incomplete assignment** in **sel == 2'b01**.
+
 > Enable for x = **NOR(** NOT(sel[1]) **AND** sel[0] **)**
 
 <!-- **Expected circuit**
@@ -2211,7 +2221,6 @@ end
 - Useful when working with a wide **MUX/DEMUX**.
 - Used inside **always()** block.
 
-
 ### For generate
 
 - Used for instantiating multiple instances of same hardware.
@@ -2306,6 +2315,7 @@ module mux_generate(i0, i1, i2, i3, sel, y);
   assign _01_ = _08_;
 endmodule
 ```
+
 </details>
 
 **Gate Level Simulation**
