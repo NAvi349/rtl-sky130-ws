@@ -1650,9 +1650,14 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166136382-8952619a-ab71-4cce-bad7-0489dc41a25e.png)
 
+* When sel = 10, the output follows i2.
+* When sel = 11, output retains its value.
+
 **Synthesis Report**
 
 ![image](https://user-images.githubusercontent.com/66086031/166136433-d1690c83-4863-4d6a-b671-b6e1bcbc482f.png)
+
+**No latch is inferred**
 
 **Synthesized netlist**
 
@@ -1709,6 +1714,7 @@ endmodule
 * There is a synthesis simulation mismatch here. 
 * When sel = 10, output follows i2 only.
 * When sel = 11, output follows i3 only.
+* No latch is inferred as there is no missing case.
 
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
