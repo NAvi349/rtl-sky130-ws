@@ -1726,11 +1726,11 @@ endmodule
 * No latch is inferred as there is no missing case.
 
 
-### Looping constructs
+## Looping constructs
 
 <!-- include syntax in theory for codes -->
 
-#### For loop
+### For loop
 * Used for evaluating expressions repeatedly.
 * Useful when working with a wide MUX/DEMUX.
 * Used inside always() block.
@@ -1739,13 +1739,13 @@ endmodule
 ![image](https://user-images.githubusercontent.com/66086031/166141593-9ebd27b8-e1c8-4d44-84b9-bbe776fb8f6b.png)
 
 
-#### For generate
+### For generate
 * Used for instantiating multiple instances of same hardware.
 * Used outside of always() block.
 
-### Looping constructs Labs
+## Looping constructs Labs
 
-#### Muliplexer using For loop
+### Muliplexer using For loop
 
 **Code for RTL Design**
 
@@ -1833,7 +1833,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166142729-d531a495-72dd-4d97-952a-36c791d41c01.png)
 
-#### DeMUX using case statement
+### DeMUX using case statement
 
 **Code for RTL Design**
 
@@ -1952,7 +1952,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166143473-37303b51-64e1-4111-975c-ba0e65694e03.png)
 
-#### DeMUX using for loop
+### DeMUX using for loop
 
 **Code for RTL Design**
 
@@ -2105,7 +2105,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166143777-da63d6e9-f1d0-4ed4-9faa-ed56263b1085.png)
 
-#### Ripple Carry Adder using for generate
+### Ripple Carry Adder using for generate
 
 **Verilog code for RTL Design**
 
