@@ -96,7 +96,7 @@ RTL Definition:
 
 #### Hold Time (Min. Delay Constraints
 
-![image size=50%](https://user-images.githubusercontent.com/66086031/166118808-82e6ff9a-34c3-4cbc-b40a-23cc1f2faa43.png)
+![image size="50%"](https://user-images.githubusercontent.com/66086031/166118808-82e6ff9a-34c3-4cbc-b40a-23cc1f2faa43.png)
 
 * We need slow cells to satisfy hold time constraints
 
