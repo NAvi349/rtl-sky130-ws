@@ -1176,6 +1176,26 @@ endmodule
 
 # Day 5
 
+## If else constructs
+![image](https://user-images.githubusercontent.com/66086031/166130661-a6c24603-a7f4-4b2c-80b3-c7b4dfd2b2ff.png)
+
+## Inferred latches for incomplete if else statements
+![image](https://user-images.githubusercontent.com/66086031/166130722-6d970b01-69eb-47a3-9dbb-1991df7ae4b5.png)
+In a combinational circuit latches should NOT be inferred.
+
+## Case statment
+![image](https://user-images.githubusercontent.com/66086031/166130768-5b1b5e74-21a7-4f9c-8a5e-f60bd403fb6b.png)
+
+## Caveats 
+![image](https://user-images.githubusercontent.com/66086031/166130801-67dba51c-ece1-4402-a396-da3b919e387f.png)
+use default to avoid inferred latches
+
+Partial assignment of outputs
+![image](https://user-images.githubusercontent.com/66086031/166131729-c8cbaaf3-a292-4294-a89c-13003e0eaca8.png)
+
+Avoid overlapping case
+![image](https://user-images.githubusercontent.com/66086031/166131811-f55f8bf3-87dd-4916-94a8-8d2ef97154b4.png)
+
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
 (As of April 2022)
