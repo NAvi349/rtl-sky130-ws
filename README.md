@@ -1647,7 +1647,7 @@ end
 
 - Latch is inferred for **incomplete case conditions**.
 - When sel becomes **10** or **11**, output retains its previous value.
-- Wse **default label** to avoid inferred latches.
+- Use **default label** to avoid inferred latches.
 
 ## Partial assignment of outputs
 
