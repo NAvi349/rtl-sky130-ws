@@ -1264,7 +1264,7 @@ endmodule
 
 ##### RTL Simulation
 
-[image](https://user-images.githubusercontent.com/66086031/166132742-09433da9-c7f8-4a71-a4e2-eb08feefc323.png)
+![image](https://user-images.githubusercontent.com/66086031/166132742-09433da9-c7f8-4a71-a4e2-eb08feefc323.png)
 
 ##### Synthesis report
 
