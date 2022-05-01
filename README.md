@@ -1302,7 +1302,7 @@ endmodule
 
 Here enable is active LOW. So NOR gate is used for the enable pin logic.
 
-<details> <summary> <strong>Verilog code for synthesized netlist</strong> </summary>
+<strong>Verilog code for synthesized netlist</strong> 
 ```verilog
 module incomp_if2(i0, i1, i2, i3, y);
   wire _00_;
@@ -1343,7 +1343,7 @@ module incomp_if2(i0, i1, i2, i3, y);
   assign _01_ = _03_;
 endmodule
 ```
-</details>	
+	
 	
 **Gate Level Simulation**
 
