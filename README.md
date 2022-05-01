@@ -1338,6 +1338,8 @@ module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg
 	end
 endmodule
 ```
+#### Expected circuit
+![image](https://user-images.githubusercontent.com/66086031/166133997-f1c0a36c-d1c2-4ee1-a8c0-23eed3a9a16f.png)
 
 #### RTL Simulation
 
@@ -1402,6 +1404,102 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166133921-83592bc3-331b-4f53-87e5-cc1667d3136f.png)
 
+
+### Case statement with default case
+
+#### Verilog code for the RTL Design
+
+```verilog
+module comp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : y = i0;
+		2'b01 : y = i1;
+		default : y = i2;
+	endcase
+end
+endmodule
+```
+
+#### Expected circuit
+
+
+#### RTL Simulation
+
+![image](https://user-images.githubusercontent.com/66086031/166134219-c626ba7d-93df-46ba-b287-7fe8acee0b7e.png)
+
+#### Synthesis Report
+
+![image](https://user-images.githubusercontent.com/66086031/166134303-b3c94136-4e80-43f6-8979-541b024f5579.png)
+
+#### Synthesized netlist
+
+![image](https://user-images.githubusercontent.com/66086031/166134352-b3fb2df0-302d-443b-b2bf-47999c67b2a8.png)
+
+#### Verilog code for the synthesized netlist
+
+### Case statement with partial output assignments
+
+#### Verilog code for the RTL Design
+#### Expected circuit
+#### RTL Simulation
+#### Synthesis Report
+#### Synthesized netlist
+#### Verilog code for the synthesized netlist
+#### Gate Level Simulation
+
+
+```verilog
+module comp_case(i0, i1, i2, sel, y);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  wire _08_;
+  wire _09_;
+  wire _10_;
+  wire _11_;
+  wire _12_;
+  wire _13_;
+  input i0;
+  input i1;
+  input i2;
+  input [1:0] sel;
+  output y;
+  sky130_fd_sc_hd__mux2i_1 _14_ (
+    .A0(_06_),
+    .A1(_07_),
+    .S(_11_),
+    .Y(_09_)
+  );
+  sky130_fd_sc_hd__nand2_1 _15_ (
+    .A(_12_),
+    .B(_08_),
+    .Y(_10_)
+  );
+  sky130_fd_sc_hd__o21ai_0 _16_ (
+    .A1(_12_),
+    .A2(_09_),
+    .B1(_10_),
+    .Y(_13_)
+  );
+  assign _12_ = sel[1];
+  assign _11_ = sel[0];
+  assign _07_ = i1;
+  assign _06_ = i0;
+  assign _08_ = i2;
+  assign y = _13_;
+endmodule
+```
+
+#### Gate Level Simulation
+
+![image](https://user-images.githubusercontent.com/66086031/166134420-05eec508-3075-4b96-8dab-0b426e16c445.png)
 
 # Author
 Navinkumar Kanagalingam, III Year, B. Tech ECE, Puducherry Technological University
