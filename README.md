@@ -915,7 +915,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166246236-56e7857c-f268-41b1-8bea-51259487ccfa.png)
 
-**Sythesized netlist**
+**Synthesized netlist**
 
 ![image](https://user-images.githubusercontent.com/66086031/166093141-55ec45de-f76f-4bed-a899-62bc5917ae31.png)
 
