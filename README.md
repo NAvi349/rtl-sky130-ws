@@ -1724,7 +1724,7 @@ endmodule
 
 ![image](https://user-images.githubusercontent.com/66086031/166132379-830d7b66-0c0e-4035-9e35-cd078a9b9fed.png)
 
-#### Example 2
+### Example 2
 
 **Verilog code for RTL Design**
 
