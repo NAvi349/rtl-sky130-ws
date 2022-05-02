@@ -615,6 +615,9 @@ module mult8 (input [2:0] a , output [5:0] y);
 endmodule
 ```
 
+![image](https://user-images.githubusercontent.com/66086031/166241133-31846427-bea8-4e6a-9a97-b195a47505e7.png)
+
+
 **Synthezised netlist**
 
 ![image](https://user-images.githubusercontent.com/66086031/165948933-db9247cb-5d33-478b-9a92-09e2af87e845.png)
@@ -756,7 +759,9 @@ module opt_check3 (input a , input b, input c , output y);
  assign y = a?(c?b:0):0;
 endmodule
 ```
-<!-- Include image for expected circuit -->
+
+![image](https://user-images.githubusercontent.com/66086031/166244936-aa53d758-fdf1-4d22-9437-3670359f5e41.png)
+
 
 **Synthesized netlist**
 
@@ -797,6 +802,8 @@ module opt_check4 (input a, input b, input c , output y);
  assign y = a?(b?(a & c ):c):(!c);
 endmodule
 ```
+
+![image](https://user-images.githubusercontent.com/66086031/166245935-8ddad8a3-6d3a-4715-9518-ca6cc9a6a0b7.png)
 
 **Synthesized netlist**
 
@@ -849,6 +856,8 @@ module multiple_module_opt(input a , input b , input c , input d , output y);
 
 endmodule
 ```
+![image](https://user-images.githubusercontent.com/66086031/166246140-e55a45e5-6f5c-4120-a6b3-b23b879341e8.png)
+
 
 ![image](https://user-images.githubusercontent.com/66086031/166092733-f3a0c293-6ce9-482d-9886-70e241016616.png)
 
@@ -896,6 +905,9 @@ module multiple_module_opt2(input a , input b , input c , input d , output y);
 
 endmodule
 ```
+
+![image](https://user-images.githubusercontent.com/66086031/166246236-56e7857c-f268-41b1-8bea-51259487ccfa.png)
+
 
 ![image](https://user-images.githubusercontent.com/66086031/166093141-55ec45de-f76f-4bed-a899-62bc5917ae31.png)
 
@@ -2014,7 +2026,9 @@ endmodule
 
 - **Latch** is inferred for **x** due to **incomplete assignment** in **sel == 2'b01**.
 
-> Enable for x = **NOR(** NOT(sel[1]) **AND** sel[0] **)**
+![image](https://user-images.githubusercontent.com/66086031/166240669-64af91c3-1411-4505-b469-d5e1f615b8bd.png)
+
+> Enable for x = **(** NOT(sel[1]) **NAND** sel[0] **)**
 
 <!-- **Expected circuit**
 
