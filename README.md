@@ -2,6 +2,7 @@
 
 # Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Day 1](#day-1)
   - [iVerilog Introduction](#iverilog-introduction)
     - [Testbench](#testbench)
@@ -70,7 +71,7 @@
   - [Avoid overlapping case](#avoid-overlapping-case)
   - [Incomplete if construct lab](#incomplete-if-construct-lab)
     - [Example 1](#example-1-3)
-      - [Example 2](#example-2-3)
+    - [Example 2](#example-2-3)
     - [Incomplete Case statement lab](#incomplete-case-statement-lab)
     - [Case statement with default case](#case-statement-with-default-case)
     - [Case statement with partial output assignments](#case-statement-with-partial-output-assignments)
@@ -1894,6 +1895,7 @@ module incomp_case(i0, i1, i2, sel, y);
   assign _01_ = _05_;
 endmodule
 ```
+
 </details>
 
 **Gate Level Simulation**
