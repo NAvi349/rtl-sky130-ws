@@ -2804,9 +2804,9 @@ endmodule
 
 # Acknowledgements
 
-[1] Kunal Ghosh
+[1] Kunal Ghosh - Founder, VSD
 
-[2] Shon Taware
+[2] Shon Taware - Teaching Assistant, VSD
 
 [3] VSD Team
 
