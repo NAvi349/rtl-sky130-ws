@@ -2805,11 +2805,14 @@ endmodule
 # Acknowledgements
 
 [1] Kunal Ghosh
+
 [2] Shon Taware
+
 [3] VSD Team
 
 # References
 
 [1] Design and Analysis of VLSI Subsystems
+
 [2] Hardware Modelling using Verilog
 
